@@ -1,0 +1,624 @@
+Linux and shell
+
+1. Linux File Structure    BHE TV UP DL 	
+2. Command to list file, uname command use, ip address, insert in file
+3. What have you written in script
+4. What is shebang
+5. Command to check file system disk space usage
+6. what are inodes in Linux 
+Write a shell script on factorial of a number.
+
+
+
+Maven
+
+1. What is the `pom.xml` file?  
+2. What are the minimum required elements in `pom.xml`?  
+3. What command is used to create a new Maven project?  
+4. What are Maven repositories and their types?  
+5. What is a Maven artifact?  
+6. Why is Maven said to use "convention over configuration"?  
+7. What is transitive dependency in Maven?  
+8. How do you change the local repository path in Maven?  
+9. What is dependency exclusion in Maven?  
+10. What is a Super POM in Maven?  
+11. What is the Maven lifecycle, and what are its phases?  
+12. What are the goals in Maven?  
+13. What does the `mvn clean` command do?  
+14. What is the difference between `install` and `deploy` in Maven?  
+15. How do you skip tests in Maven? (Command and use case)  
+16. How can we change the build output file extension in Maven?  
+17. If we need to change the template of a Maven project, where can we do it?  
+18. What are build profiles in Maven? (Per project, per user, global)  
+19. What are you using as a remote repository in your project?  
+20. How do you publish Maven artifacts to Nexus or Artifactory?  
+21. How do you authenticate Maven with a remote repository?  
+22. How does Maven integrate with Jenkins?  
+23. How do you handle Maven versioning in a CI/CD pipeline?  
+24. How do you speed up Maven builds?  
+25. How do you resolve dependency conflicts in Maven?  
+26. How do you use Maven inside a Docker container?  
+27. How do you analyze a failing Maven build?  
+28. What is the difference between Ant and Maven?  
+29. How does Maven help in DevOps automation?  
+30. What are the key elements that Maven takes care of? (Build, dependencies, reports, distribution, release, mailing list) 
+
+Jenkins
+39. Do you have separate Jenkins servers for each environment?
+1. On which language Jenkins is written
+2. Types of projects in Jenkins
+3. Syntax of scripted and declarative pipeline
+4. Jenkins CLI command to start Jenkins server
+5. What is CI/CD
+6. Some tools for CI/CD
+7. Benefits of Continuous Integration
+8. Installation steps of Jenkins
+9. Some errors faced while creating pipelines and debugging methods
+10. Syntax for pipeline
+11. Default Jenkins home directory
+12. Ways to automate build trigger
+13. If we have to keep only 5 old builds
+14. How to create Jenkins backup
+15. Jenkins security
+16. How to deploy an application in Jenkins
+17. Multibranch pipeline project
+18. How to set Jenkins build to fail based on a specific word in console output
+19. Active and reactive parameters
+20. If-else in scripting pipeline
+21. Master and slave architecture
+22. What is Jenkins shared library, why is it used, and its structure
+23. Some most useful Jenkins plugins (Maven, SCM, Amazon EC2, Nagios)
+24. A Jenkins build fails due to a missing dependency but runs perfectly fine on the local machine - what to do
+25. Jenkins build runs out of disk space, causing build failure - how to resolve
+26. After restarting, Jenkins remains stuck at the preparing Jenkins or initialization stage
+27. Jenkins job is queued but doesn't start
+In Jenkins, have you worked on it?
+When you run the pipeline, is it on the static space or dynamic space or directly on the master?
+Can you tell me the basic stages and the flow of your pipeline?
+6. Do you monitor build check-ins?
+7. Is your current project based on Java?
+8. Do you know how to create projects and configure check-ins?
+9. Do you create Jenkins pipelines using declarative or freestyle syntax?
+10. What are the different stages in a Jenkins declarative pipeline?
+How is the CI/CD pipeline setup in your project? What are the security tools integrated?
+How do you manage them?
+Write a rough pipeline script for microservices architecture.
+How do you find errors in the pipelines?
+Explain the CI/CD workflow you follow and the kind of pipeline you use. How do you define and invoke pipelines in Jenkins?
+What are shared libraries in Jenkins, and how are they written and defined?
+What kind of applications do you deploy using Jenkins pipelines, and what deployment tools do you use?
+If the Jenkins pipeline runs but the build doesn’t happen, what possible issues could be causing it?
+What is the purpose of a webhook, and how is it used in a CI/CD pipeline?
+What branching strategy do you follow, and how do you handle merges to avoid breaking the release branch? If a bug appears in production, what’s your approach to resolving it?
+Describe your typical deployment flow and CI/CD workflow. What stages do you define in your Jenkins pipeline, and how do you ensure full quality checks during deployment?
+How do you use Jenkins shared libraries? Explain their typical structure and how they are integrated into your Jenkinsfiles.
+What have you done with Jenkins?
+What was the CI/CD pipeline used for — infra or app deployment?
+Can you pass runtime parameters in Jenkins pipeline?
+31. Jobs often land in build queue — how can we get notified?
+35. Can you explain the Jenkins architecture (nodes and controller)?
+36. Indexes within an application — what is an index?
+6. How do you monitor the pipelines?
+3. What is the difference between scripted and declarative pipelines in Jenkins?
+
+
+
+
+
+Docker
+
+1. Syntax of Dockerfile
+2. Difference between CMD, ENTRYPOINT, and RUN
+3. What is Docker Stack
+4. Command to remove unwanted network
+5. Can you overwrite environment variables
+6. Difference between Docker and Kubernetes
+7. Command to run Docker Compose file
+8. Components of Docker
+9. Difference between Docker Image and Container
+10. Flow of building a Docker image
+11. Difference between Repository and Registry
+12. Commands to build a Docker image and run a container
+13. How to optimize Dockerfile
+14. Best practices to write Dockerfile
+15. Can Docker containers communicate with each other
+16. Command to get running containers
+17. How to remove unused containers and dangling images
+18. What are dangling images
+19. Moving an image to another server without using a registry concept
+20. Difference between Docker Stop and Docker Kill
+21. Difference between Docker Run and Docker Create
+22. How to mention environment variables
+23. How to use secrets in Docker
+24. How to troubleshoot issues in any container
+25. Difference between COPY and ADD
+26. How to store data in Docker containers
+27. Explain networking in Docker
+28. Difference between Dockerfile and Docker Compose file
+29. If one service is dependent on another, how to create it
+30. What is Docker Stack
+31. Difference between Docker Swarm and Kubernetes
+32. How to do OS upgrades in containers
+33. Creating service on a particular node
+34. What is Docker Swarm
+35. Architecture of Docker Swarm
+36. How to join worker nodes to master
+37. Command to create service	
+38. Sample Docker Compose file
+39. Two modes of services created
+40. Number of clusters generally used in your company
+41. Number of containers in your current project
+42. Version of Docker being used
+43. Multi-host networking with Docker Swarm
+44. How to pass arguments in Dockerfile
+45. Command to give a custom Dockerfile name while building an image
+What is multi-stage Docker build?
+What are the stages in a Docker image build? Why do we use ENTRYPOINT and CMD instructions?
+How do you scan Docker images—both during build and at the registry level? Are you using any extensions or tools for image scanning?
+How do you pass environment variables during Docker build commands?
+What services do you use for storing Docker images?
+Which container registry do you use for storing Docker images?
+
+
+
+Kubernetes
+
+1. Kubernetes Architecture
+2. Command to run Kubernetes Manifest
+3. What happens when the master node fails; will the worker node keep running
+4. What is etcd used for
+5. Types of scaling used
+6. Running instructions before deployment
+7. What is Headless
+8. What is StatefulSet
+9. Main pointers under "spec" in the manifest file
+10. what is difference between docker and Kubernetes 
+11. what is difference between docker swam and Kubernetes 
+12. what is difference between docker container and a Kubernetes pod 
+13. what is namespaces in Kubernetes 
+14. what is role of kube proxy 
+15. what are different types of services within Kubernetes 
+16. what is difference between nodeport and load balancer 
+17. what is the role of kubelet
+18. what are day to day activites on Kubernetes 
+19. what the difference between stateful set and demon set why we use it
+20. If there is an update in an application and it is already deployed in Kubernetes how will it be done 
+21. In case of blue green deployement how will be it done in Kubernetes 
+22. which file i will make a change for doing blue green deployment 
+23.  How do you add repositories in the Helm chart?
+24. How do you work on Kubernetes CMD? How do you list the pods?
+25.  If you want to delete a pod, what’s the command?
+26. how can we pull image using Kubernetes
+27. How do we configure pod autoscaling?
+28. Can you give an example of autoscaling?
+29.  What are Helm charts and how do you use them for application deployment? (added from context)
+30. How do you add repositories in the Helm chart?
+31.  In EKS, how do you deploy an application?
+45.  What are the main components of EKS?
+46.  How do you create a Kubernetes pod in EKS?
+47. How do you connect your local system to EKS?
+48. Can you pull an image using a URL? For example, from AWS ECR?
+43. How do we do autoscaling in EKS?
+42. In EKS, how do you deploy an application?
+In the EKS, how do you deploy? Via kubectl or something else?
+. Is Jenkins integrated with Docker in your current setup?
+13. Are you working with Kubernetes? What activities do you perform in Kubernetes?
+14. How do you list pods using kubectl commands?
+15. How do you troubleshoot pod logs in Kubernetes?
+16. You are using an on-prem Kubernetes setup — how would you upgrade Kubernetes from one version to another?
+17. What is the difference between upgrading the control plane and worker nodes?
+18. Before upgrading, what steps will you take to ensure safety and compatibility?
+19. What kind of backup will you take — cold backup or etcd backup?
+From a Kubernetes security perspective, what are the best practices you follow in an ADM environment?
+21. Do you enable audit logs in Kubernetes? Why is that important?
+What are pre-requisites to upgrade K8s cluster?
+What is Pod Disruption Budget (PDB) in K8s?
+How do we make a K8s cluster highly available?
+What monitoring tools are setup? Have you set the alerts and tell me some common errors you faced related to pod management.
+What are manifest files?
+How do you create and manage Kubernetes clusters (using tools like Terraform), and what are the master and worker nodes?
+What are common Kubernetes errors you’ve faced (like CrashLoopBackOff, ImagePullError), and how did you resolve them?
+What is the command to access a pod and how can you define or create a Kubernetes class or object?
+Explain the folder structure of a basic Helm chart. What commands do you use to deploy with Helm?
+How do you handle authentication for EKS clusters and store secrets securely in your environment?
+What is email signing and Helm chart signing? Which tools do you use to sign Helm charts?
+
+
+
+
+Ansible
+
+1. Components of Ansible
+2. Ansible Roles   
+3. Ansible Galaxy
+4. What is an ad-hoc command
+5. What is "host" used for and what is "task"; can we write something before "host"
+6. Can Ansible be installed on Windows
+7. Command to check the syntax of a playbook file
+8. Command to run a playbook file
+9. Difference between Ansible and Terraform
+10. Why is Ansible a preferred configuration management tool
+11. Main components of Ansible
+12. Command to run a playbook
+13. Have you worked on custom modules? Explain
+14. Name some modules you have worked on
+15. Can you write a playbook (example)
+16. Requirements to install Ansible
+17. Have you worked on Ansible ad-hoc commands
+18. Fetching server details using Ansible
+19. What are Ansible Facts
+20. What is "handlers" in Ansible
+21. What is loop features in Ansible
+22. Skipping CentOS tasks
+23. Directory structure of Ansible roles
+24. What is Ansible Tower
+25. How to encrypt in Ansible
+26. How to integrate Ansible with Terraform
+27. Command to run an Ansible playbook with a specific inventory file
+28. Example playbook to check service status
+29. Setting up Jump Host in Ansible to access servers without direct access
+30. How to optimize the execution of an Ansible playbook for a large number of servers
+31. error handling in ansible 
+What is Ansible Vault?
+What are Ansible Roles?
+Why are you using Ansible? What have you done with it?
+How do you manage dynamic inventory in AWS using Ansible?
+Can you show a sample playbook to install Nginx?
+How do you restart Nginx if config is changed?
+How to use handlers in Ansible and how are they triggered?
+What is idempotency in Ansible? How do you handle it?
+How to run only a specific task in a long Ansible playbook?
+How do you use Ansible Vault to manage secrets?
+32. What is Ansible, and what is its purpose?
+33. What language do you use in Ansible?
+
+
+Terraform
+
+
+36. What are Terraform modules, and have you used any in your project?
+34. Where do you run Terraform code, remotely or locally?
+1. Basic Terraform commands
+2. How to auto-approve without typing yes or no
+3. Workspaces and Terraform modules
+4. What is tfstate file and best practices to secure it
+5. Three or five important Terraform commands
+6. How to destroy a specific resource
+7. Terraform file extension
+8. Who developed Terraform
+9. Bringing manually created resources under Terraform
+10. What are provisioners
+11. Difference between provisioner and provider
+12. How to provide secrets in Terraform
+13. Creating multiple similar configurations in Terraform
+14. Providing a version range in Terraform
+15. Creating resources after other resources (using "depends_on")
+16. Showing outputs during resource creation
+17. Ways to store variables in Terraform
+18. Explain Terraform init, plan, and apply
+19. Loops in Terraform
+20. Difference between Ansible and Terraform
+21. what are terraform lifecycle
+22. how can we import terraform infrastructure cmd and full steps
+23. what are terraform important components 
+24. how we can store sensitive data in terraform 
+25. what is the difference between local repository and global repository 
+26. If I apply or if I use a Terraform plan, will it make a permanent change or just a temporary change?
+27. What is Terraform Import?
+28. What is the use of Taint in Terraform?
+29. How do we check the benchmarking structure of a Terraform compilation? (Checking syntax and formatting)
+Where can I have the state files in Terraform?
+How is stateful store in Terraform in S3?
+Write a terraform script for VPC architecture for production.
+What are Terraform modules and have you written any?
+How do you handle Terraform state locking?
+How do you manage secrets in Terraform?
+How do you manage the same infrastructure for different environments in Terraform?
+How do you define module dependency in Terraform?
+Can you import manually created resources into Terraform?
+
+Git
+
+1. What is source code management 
+2. Advantages of source code management
+3. Available source code management tools in the market
+4. What is Git and GitHub
+5. Advantages of Git
+6. Stages in Git
+7. Common branching strategy in Git; what is used in your organization
+8. Types of repositories in Git
+9. What is a snapshot in Git
+10. What is Git Merge
+11. What is Git Stash
+12. What is Git Reset
+13. What is Git Revert
+14. Difference between Git Pull, Git Clone, and Git Fetch
+15. Difference between Git Merge and Git Rebase
+16. What is Git Bisect
+17. What is Git Squash
+18. What is Git Hooks
+19. What is Git Cherry-pick
+20. Difference between Git and SVN
+21. What are submodules and modules in Git
+22. Difference between Git Branch and Git Tag
+23. Merge specific commit in a branch - what command is used
+What are the remote and local repositories in your pipeline?
+Do you know how PRs in Git work?
+29. How can I resolve conflicts?
+30. Do you have any idea about git rebase?
+5. What branching strategy do you use?
+
+
+Monitoring tool
+1. What Monitoring tools are used in your company
+2. Do you have an idea how it is deployed
+3. Difference b/w Monitoring and Observability.
+4. primary components of obsevebility.
+Logs
+Metrics
+Traces
+5. How do you monitor and optimize database performance
+6. How y would you implement a monitoring strategy for a containerized environment.
+7. what tools are using for different types of monitoring 
+8. monitoring in aws
+9. monitoring in azure
+10. what are you doing for handling alerts
+11. how will you monitor api endpoint http respose code
+
+Scenario-Based Questions
+
+1. How to avoid pushing sensitive files to a remote repository
+2. Cloning a particular branch with the last commit ID
+3. Making a teammate track a renamed file after cloning a project
+4. A production system has been compromised. What immediate actions would you take?
+
+
+AWS
+
+What is the role of IAM roles and policies?
+2. Can you explain the Terraform plan and its purpose?
+3. What is AWS Lambda, and how does it work?
+4. How do you invoke a Lambda function, and where do you configure it?
+5. Can you describe how Lambda handles scaling and event-based invocations?
+6. What is Amazon CloudWatch, and have you configured any custom metrics?
+7. What metrics are available on your CloudWatch dashboard?
+8. How do you configure CPU utilization on your CloudWatch dashboard?
+9. How do you attach an SSL certificate to an S3 bucket?
+10. What type of encryption have you implemented in your project?
+11. If an S3 bucket has a read-only policy, can you modify objects in the bucket?
+12. Why did you choose Terraform over Boto3 for infrastructure provisioning?
+13. What is a Content Delivery Network (CDN), and how does it work?
+14. Have you created a Jenkins pipeline for your project?
+15. How do you attach policies to IAM users, either individually or by group?
+16. What type of deployment strategies are you using in your project?
+17. Have you used any tools to create customized Amazon Machine Images (AMIs)?
+18. What is connection draining, and how does it work?
+19. How does an Elastic Load Balancer (ELB) distribute traffic?
+20. What is auto-scaling, and how does it work?
+21. Can you describe the different types of Load Balancers and provide examples?
+22. What is the maximum runtime for a Lambda function?
+23. What is the maximum memory size for a Lambda function?
+24. How can you increase the runtime for a Lambda function?
+25. What automations have you performed using Lambda in your project?
+26. Why did you choose Terraform over Boto3 for infrastructure provisioning?
+27. What modules have you used in your Lambda function?
+28. Have you created an SNS topic for your project?
+29. If you've exhausted IP addresses in your VPC, how would you provision new resources?
+30. What is Groovy, and how is it used in Jenkins?
+31. Why do you use Groovy in Jenkins, and where do you save Jenkins files?
+
+
+35. What is the purpose of access keys and secret keys in AWS?
+
+37. What environments have you set up for your project?
+38. Do you use the same AWS account for all environments?
+
+40. Where do you write and save your Lambda function code? 
+41. what are services in aws
+44.  Why do we use Amazon VPC?
+Can you contact AWS to know which all services you have logged on to?
+What types of load balancers are you using?
+Can I have multiple targets in a Network Load Balancer?
+What are task definitions and services in ECS?
+If you created a service and associated it with a load balancer, how can you change the listener of the load balancer?
+Can you change the target group of any ECS service if you created these ones?
+Do you know about ECR Replication?
+What is the maximum range you can create a VPC of?
+What is the minimum CIDR block you can create a VPC with?
+Out of minimum CIDR IP, how many VPCs can we create?
+What are NAT gateways?
+Tell me about the VPC structure setup in your project.
+Write a terraform script for VPC architecture for production.
+How many objects can a S3 bucket store?
+What are IAM roles and policies?
+How do you manage and connect services like DBs, EC2, EKS, or ECS? Include the command to connect to ECS.
+How do you establish a connection with databases in your deployments or infrastructure setup?
+How do you handle authentication for EKS clusters and store secrets securely in your environment?
+How do you create AWS Lambda functions and manage the artifacts for deployment? What options do you use to push artifacts to Lambda?
+1. What is Load Balancer
+2. Backup snapshot-related questions
+3. what are the different types of disks that are available in aws 
+4. have you used load balancing based on route 53
+What AWS services are you familiar with?
+Difference between public and private subnet?
+How can EC2 access S3 privately?
+How do you set up private connectivity between EC2 and S3?
+Have you created or deployed applications on EKS?
+Do you know the EKS architecture or governance policies?
+Pod is in a failed state in EKS — how do you troubleshoot it?
+What is a Transit Gateway?
+How do you connect two VPCs in different AWS accounts?
+Is VPC peering a scalable option?
+ECS vs EKS — when would you choose each?
+You don’t need to retrieve data quickly and it's okay if it's deleted after 30 days — what will you use in S3?
+What are your options in S3 for long-term storage?
+How many types of Load Balancers are there in AWS?
+When to use ALB and when to use NLB?
+App is hosted on EC2 and DB is in RDS — how to host the app on the internet?
+If EC2 is in a private subnet, how can we make the app public?
+When should domain mapping be done?
+What do you enter when mapping — IP or DNS of Load Balancer?
+22. What are the types of S3 buckets?
+23. What is the difference between S3 Standard and Glacier?
+24. How do you secure S3 buckets?
+25. What other than lifecycle policies do you use with S3?
+26. Why do you use Intelligent Tiering?
+27. Explain cross-region replication in S3.
+28. How can we monitor and track S3?
+9. One of my applications is down on EC2 — how do you troubleshoot?
+10. EC2 is in terminated state — what will you do first?
+11. How will you set up an alert for EC2 termination?
+12. What is CloudWatch used for?
+13. What is CloudTrail used for?
+14. What is the difference between CloudWatch and CloudTrail?
+15. What is the difference between SNS and SQS?
+16. What are decoupled systems?
+17. Any idea about EventBridge?
+18. How can two servers (Mumbai & Chicago) SSH each other?
+19. You have only one public IP — how can you connect the servers?
+20. Can you tell me something about VPC peering?
+21. I just want to increase memory in the same EC2 instance — can I do that?
+7. What are the things you can implement to save cost?
+4. Do you have experience working on autoscaling?
+
+
+eks 
+
+
+## 🔹 **Amazon EKS & Kubernetes**
+
+1. What is EKS and how does it differ from self-managed Kubernetes?
+2. How do you upgrade an EKS cluster and its worker nodes?
+3. What are managed node groups vs self-managed nodes vs Fargate in EKS?
+4. How do you replace AMIs in EKS worker nodes?
+5. How do you perform zero-downtime upgrades in Kubernetes?
+6. Explain Pod Security Admission (PSA). How do you enforce restricted policies?
+7. How do you handle cluster auto-scaling in EKS? (Cluster Autoscaler vs Karpenter)
+8. Explain Karpenter. Why use it over Cluster Autoscaler?
+9. What is the difference between Horizontal Pod Autoscaler (HPA), Vertical Pod Autoscaler (VPA), and Cluster Autoscaler?
+10. How do you troubleshoot a pod stuck in `Pending` state?
+11. What are taints and tolerations? How are they used with node groups?
+12. How do you secure EKS with IAM roles for service accounts (IRSA)?
+13. Explain EKS control plane logging and monitoring.
+14. How do you perform a rolling deployment in Kubernetes?
+15. What’s the difference between ReplicaSet, Deployment, and StatefulSet?
+16. How do you implement pod-to-pod security in EKS?
+17. How do you run VAPT hardening in EKS with Twistlock / Prisma Cloud?
+18. What is the default CNI used in EKS? How do you troubleshoot CNI issues?
+19. What is the difference between AWS VPC CNI, Calico, and Cilium in EKS?
+20. How do you enable audit logging in Kubernetes/EKS?
+
+---
+
+## 🔹 **AWS Core Services**
+
+### EC2
+
+1. How do you launch and harden EC2 instances?
+2. How do you patch Linux and Windows servers in AWS?
+3. Difference between On-Demand, Reserved, and Spot EC2.
+4. How do you troubleshoot high CPU or memory usage on EC2?
+5. How do you resize an EC2 instance without downtime?
+
+### RDS
+
+6. How do you upgrade an RDS instance with minimal downtime?
+7. What’s the difference between Multi-AZ and Read Replica?
+8. How do you handle RDS backup & restore?
+9. How do you secure RDS (encryption, IAM auth, parameter groups)?
+10. How do you scale RDS vertically vs horizontally?
+
+### Load Balancers
+
+11. Difference between ALB, NLB, and CLB.
+12. How do you enable sticky sessions in ALB?
+13. How do you enable SSL termination in ALB/NLB?
+14. What is cross-zone load balancing?
+15. How do you troubleshoot high latency in ALB?
+
+### VPC & Networking
+
+16. What is CIDR? What is the minimum CIDR for a VPC?
+17. How many subnets can you create per VPC?
+18. Difference between NAT Gateway and NAT Instance.
+19. How do you configure VPC peering and its limitations?
+20. What’s the difference between VPC peering and Transit Gateway?
+21. How do you secure traffic between VPCs?
+22. How do you troubleshoot packet loss in VPC?
+23. What is the difference between Security Groups and NACLs?
+
+---
+
+## 🔹 **Security & Hardening**
+
+1. What steps do you follow for Linux server hardening?
+2. What steps for Windows server hardening?
+3. How do you implement IAM least privilege in AWS?
+4. What is Twistlock (Prisma Cloud)? How does it help in EKS security?
+5. How do you perform vulnerability scanning on containers?
+6. Explain runtime security in Kubernetes.
+7. How do you secure secrets in Kubernetes? (KMS, Secrets Manager, HashiCorp Vault)
+8. Explain AWS GuardDuty, Inspector, and Config.
+9. How do you secure S3 buckets? (Block public access, bucket policies, encryption)
+
+---
+
+## 🔹 **Disaster Recovery (DR)**
+
+1. What is RTO and RPO in DR planning?
+2. How do you perform a DR drill?
+3. How do you back up EKS cluster resources?
+4. How do you back up and restore RDS?
+5. What are multi-region strategies for DR in AWS?
+6. How do you handle failover between regions?
+
+---
+
+## 🔹 **Automation & IaC**
+
+1. Difference between Terraform and CloudFormation.
+2. How do you manage Terraform state? What is state locking?
+3. What are Terraform modules?
+4. How do you write Terraform code for EKS?
+5. How do you handle secrets in Terraform?
+6. Explain drift detection in CloudFormation.
+
+---
+
+## 🔹 **CI/CD & Monitoring**
+
+1. How do you create a Jenkins pipeline for EKS deployments?
+2. How do you integrate GitHub Actions with AWS?
+3. What’s the difference between Jenkins vs GitHub Actions vs GitLab CI?
+4. How do you implement blue/green or canary deployments?
+5. What is Prometheus? How does it integrate with EKS?
+6. How do you set up Grafana dashboards for cluster monitoring?
+7. How do you troubleshoot node/pod performance in CloudWatch?
+
+---
+
+## 🔹 **Scenario-Based**
+
+1. Your EKS worker nodes are not joining the cluster – how do you debug?
+2. A pod is crashing repeatedly with OOMKilled – how do you fix it?
+3. An application behind ALB is throwing 502 errors – how do you debug?
+4. You need to upgrade EKS from v1.26 to v1.29 – what steps will you follow?
+5. Users complain about high latency from RDS – how do you investigate?
+6. An EC2 instance is not reachable via SSH – how do you debug?
+7. Your NAT gateway costs are too high – how do you optimize?
+8. Your VPC CIDR is exhausted – how do you fix it?
+9. During DR drill, your EKS app is not coming up in another region – how do you debug?
+10. Prisma Cloud reports a critical container vulnerability – what actions do you take?
+
+
+Python and shell script questions
+
+Have you written any Python scripts to automate tasks? What do they do?
+32. Write a palindrome program in Python.
+33. Explain the palindrome code.
+
+
+
+
+
+
