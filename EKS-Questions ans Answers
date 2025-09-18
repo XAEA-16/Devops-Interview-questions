@@ -1,0 +1,234 @@
+Awesome 🚀 let’s dive into the **EKS (Elastic Kubernetes Service) interview questions** now. I’ll give you **detailed yet clear answers**, similar to the Kubernetes part, so you can understand the concepts and recall them quickly in the interview.
+
+---
+
+# 📘 Amazon EKS Interview Questions with Detailed Answers
+
+---
+
+### 1. **What is the difference between EKS and self-managed Kubernetes?**
+
+* **EKS (Elastic Kubernetes Service):**
+
+  * AWS manages the **control plane** (API server, etcd, scheduler, controller manager).
+  * Control plane is **HA by default** across multiple AZs.
+  * AWS patches, scales, and secures the control plane.
+  * You manage worker nodes (EC2, Fargate, or managed node groups).
+
+* **Self-managed Kubernetes:**
+
+  * You set up everything yourself (control plane + worker nodes).
+  * Full control, but high operational overhead.
+  * You must manage upgrades, backups, HA, monitoring, and security.
+
+👉 In interviews: EKS = “managed”, self-managed = “DIY cluster”.
+
+---
+
+### 2. **How do you upgrade an EKS cluster?**
+
+* **Step 1:** Upgrade the **control plane** (via AWS console/CLI). AWS handles it.
+* **Step 2:** Upgrade **worker nodes**:
+
+  * If using **Managed Node Groups** → run upgrade, AWS will:
+
+    * Launch new nodes with updated AMI,
+    * Drain old nodes,
+    * Migrate workloads safely.
+  * If using **Self-Managed Nodes** → you must:
+
+    * Cordon & drain old nodes,
+    * Launch new AMIs manually,
+    * Update kubelet/kubectl versions.
+
+👉 Always upgrade **control plane first**, then **worker nodes**.
+
+---
+
+### 3. **What is the difference between HPA, VPA, and Cluster Autoscaler?**
+
+* **HPA (Horizontal Pod Autoscaler):**
+
+  * Scales number of pods in a Deployment/ReplicaSet based on metrics (CPU, memory, custom).
+  * Example: Scale web pods from 2 → 10 during high load.
+
+* **VPA (Vertical Pod Autoscaler):**
+
+  * Adjusts pod resource **requests/limits** automatically.
+  * Example: Increase pod memory limit from 256Mi → 512Mi.
+
+* **Cluster Autoscaler:**
+
+  * Scales the number of worker nodes.
+  * Example: If pods can’t be scheduled due to resource shortage → add new EC2 nodes.
+
+👉 HPA = pods count, VPA = pod resources, Cluster Autoscaler = nodes count.
+
+---
+
+### 4. **Explain Karpenter. Why use it over Cluster Autoscaler?**
+
+* **Karpenter** = AWS-native, open-source node autoscaler (replacing Cluster Autoscaler).
+* **Advantages over Cluster Autoscaler:**
+
+  * **Faster provisioning** → reacts instantly to pending pods.
+  * **Cost optimization** → selects best-fit instance type (spot, on-demand, mix).
+  * **Flexible** → doesn’t rely only on ASGs (works with EC2 directly).
+  * **Efficient bin-packing** → launches just the right node sizes.
+
+👉 In interview: “Karpenter is next-gen autoscaler for EKS, faster & cheaper than Cluster Autoscaler.”
+
+---
+
+### 5. **How do you handle cluster auto-scaling in EKS?**
+
+Two options:
+
+1. **Cluster Autoscaler:**
+
+   * Deploy as a pod in the cluster.
+   * Needs an AutoScalingGroup (ASG) for worker nodes.
+   * Adds/removes EC2 nodes based on pending pods.
+
+2. **Karpenter (recommended):**
+
+   * Install Karpenter controller.
+   * Define **Provisioner** CRD (rules for nodes: instance type, AZs, capacity type).
+   * Karpenter provisions nodes on-demand without ASG.
+
+👉 Cluster Autoscaler = stable, Karpenter = modern, faster, cheaper.
+
+---
+
+### 6. **How do you implement pod-to-pod security in EKS?**
+
+* Use **Kubernetes Network Policies**.
+* Define rules for pod ingress/egress traffic (namespace, labels, IP ranges).
+* Example: Only allow app pods to talk to DB pods, block everything else.
+* On AWS, ensure you’re using a CNI that supports NetworkPolicies (Calico, Cilium).
+
+👉 Bonus: You can also use **AWS Security Groups for Pods** (SGP) with EKS.
+
+---
+
+### 7. **How do you secure secrets in EKS?**
+
+Options:
+
+1. **K8s Secrets (default)** → base64 encoded, not secure enough.
+2. **EKS + AWS KMS encryption:** Encrypts secrets in etcd.
+3. **External secret managers:**
+
+   * **AWS Secrets Manager** / **SSM Parameter Store** → fetch secrets at runtime.
+   * **HashiCorp Vault** → enterprise-grade secret management.
+   * **Sealed Secrets (Bitnami)** → store encrypted secrets in Git.
+
+👉 Best practice: Use **AWS Secrets Manager** + IAM roles (least privilege).
+
+---
+
+### 8. **An application behind an ALB is throwing 502 errors – how do you debug?**
+
+* **Step 1:** Check pods readiness (`kubectl get pods`) → maybe probes are failing.
+* **Step 2:** Check pod logs (`kubectl logs`).
+* **Step 3:** Check ALB target group health in AWS console.
+* **Step 4:** Verify ALB → node SG rules (inbound allowed).
+* **Step 5:** Check ALB listener rules → traffic forwarded correctly.
+
+👉 In interviews: Show **systematic debugging**: Pods → Logs → Target Group → SG → ALB rules.
+
+---
+
+### 9. **How do you troubleshoot a pod stuck in Pending state?**
+
+* **Check pod events:**
+
+  ```bash
+  kubectl describe pod <pod>
+  ```
+* Possible causes:
+
+  * **Insufficient resources** (CPU/memory).
+  * **Node taints** not tolerated.
+  * **Affinity/anti-affinity rules** blocking scheduling.
+  * **Image pull errors** (private repo auth).
+* **Check nodes:**
+
+  ```bash
+  kubectl get nodes -o wide
+  ```
+
+---
+
+### 10. **Pod is OOMKilled (OutOfMemoryKilled) – how to fix?**
+
+* **Check logs** (`kubectl logs`).
+* **Increase memory limit** in deployment:
+
+  ```yaml
+  resources:
+    requests:
+      memory: "512Mi"
+    limits:
+      memory: "1Gi"
+  ```
+* **Optimize app** (fix memory leaks).
+* Use **VPA** to auto-adjust memory.
+* Monitor via Prometheus/Grafana.
+
+---
+
+### 11. **What are taints and tolerations?**
+
+* **Taints (on nodes):** Prevent certain pods from scheduling unless tolerated.
+
+  * Example: `kubectl taint nodes node1 key=value:NoSchedule`
+* **Tolerations (on pods):** Allow pods to schedule on tainted nodes.
+
+👉 Used for **dedicated nodes** (e.g., GPU nodes for ML workloads).
+
+---
+
+### 12. **What are different types of Kubernetes services in EKS?**
+
+* **ClusterIP (default):** Internal-only.
+* **NodePort:** Exposes service on each node IP + static port.
+* **LoadBalancer:** Creates AWS ELB/ALB.
+* **ExternalName:** Maps to external DNS.
+* **Headless service:** No ClusterIP, DNS returns pod IPs.
+
+---
+
+### 13. **How do you integrate AWS IAM with EKS?**
+
+* EKS supports **IAM Roles for Service Accounts (IRSA)**.
+* You map a Kubernetes service account to an AWS IAM role.
+* Example: App pod can fetch secrets from **AWS Secrets Manager** securely.
+
+---
+
+### 14. **How do you monitor and log EKS clusters?**
+
+* **Monitoring:** Prometheus + Grafana, CloudWatch Container Insights.
+* **Logging:** Fluentd/Fluentbit → CloudWatch/ELK.
+* **Tracing:** OpenTelemetry + X-Ray.
+
+---
+
+### 15. **Difference between EKS Managed Node Groups vs Self-Managed Nodes.**
+
+* **Managed Node Groups:**
+
+  * AWS provisions, upgrades, and patches worker nodes.
+  * Auto-scaling integrated.
+  * Easy for production.
+
+* **Self-managed Nodes:**
+
+  * You launch EC2 manually, join them to cluster.
+  * Full flexibility, but you manage upgrades.
+
+---
+
+✅ That covers the **EKS interview section in detail**.
+
