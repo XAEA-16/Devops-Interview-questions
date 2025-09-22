@@ -620,5 +620,80 @@ Have you written any Python scripts to automate tasks? What do they do?
 
 
 
+Sure! From our previous conversation about your **current interview**, here’s a structured list of **all the questions that were asked** specifically in that session:
+
+---
+
+## **Kubernetes / EKS Basics & Operations**
+
+1. What are the tasks you have done on the Kubernetes level?
+2. Did you get a chance to upgrade the EKS cluster? What tips do you follow?
+3. What are the key components of Kubernetes architecture and their roles?
+4. What are the types of containers?
+5. What is the difference between a pod, a node, and a container?
+6. What is the difference between a ReplicaSet and a Deployment?
+7. What does a Deployment support (updates, rollback, versioning)?
+8. What is a ValidatingWebhookConfiguration and MutatingWebhookConfiguration?
+
+---
+
+## **Pods, PVCs & Troubleshooting**
+
+9. PVCs are stuck in Pending state due to storage bottleneck — how do you troubleshoot?
+10. Worker node AMI replacement caused some pods to remain in Terminating state — how do you investigate and remove them safely?
+11. How do you troubleshoot out-of-memory (OOM) errors?
+12. Some pods are Pending and fail to schedule — what could be the reasons?
+13. Pods fail to start due to image pull or “image full backup” errors — how do you fix it?
+14. How does the Deployment know which registry and user to pull the image from?
+15. How do you manage pulling thousands of images across nodes automatically?
+16. Pods in a CrashLoopBackOff — how do you troubleshoot?
+17. Pods failing due to resource constraints — how do you increase memory/CPU?
+
+---
+
+## **Scaling & Node Management**
+
+18. How do you scale resources at the node level (not pod level)?
+19. How do you ensure zero-downtime deployments?
+20. Cluster Autoscaler is enabled but new nodes are not being created — how do you troubleshoot?
+21. Some nodes in the cluster are in NotReady state — how do you investigate?
+22. How do you manage worker node auto-scaling — Carpenter vs Cluster Autoscaler?
+
+---
+
+## **Networking & Services**
+
+23. What is a load balancer, launch template, and node group?
+24. How do you choose among ClusterIP, NodePort, and LoadBalancer services?
+25. Two pods in different namespaces — how can they communicate?
+26. Multiple services in the same namespace fail after node replacement or EKS update — what could be the reason?
+
+---
+
+## **Security**
+
+27. What is Kubernetes security and how does it differ from RBAC?
+28. What are Pod Security Admission controls, and how do you enforce security best practices?
+29. How does PDB (Pod Disruption Budget) work, and why is it important for stateful applications?
+30. Importance of GDG / PDP for stateful applications.
+
+---
+
+## **Cluster Design & Best Practices**
+
+31. What are the considerations and steps important while designing a scalable Kubernetes cluster?
+32. How do you handle PVCs, storage, and node upgrades in production clusters?
+
+---
+
+## **Follow-Up / Scenario-Based**
+
+33. Are all applications used by clients, internal, or both?
+34. Do you use separate Jenkins servers for each environment?
+35. How many clusters are you managing currently?
+36. How frequently do you perform worker node replacement and cluster upgrades?
+37. What is your tech stack apart from Kubernetes?
+if suppose you want to pull thousand of image daily how to do and you manage 200+ cluster how you do it
+---
 
 
