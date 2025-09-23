@@ -1,202 +1,7 @@
-### Linux and Shell
-1. Linux File Structure BHE TV UP DL
-2. Command to list file, `uname` command use, ip address, insert in file
-3. What have you written in script
-4. What is shebang
-5. Command to check file system disk space usage
-6. What are `inodes` in Linux
-7. Write a shell script on factorial of a number.
-8. What are the key differences between Linux and Unix?
-9. Explain the Linux file system hierarchy (FHS).
-10. What's the difference between a hard link and a soft (symbolic) link?
-11. How do you check disk space usage in Linux?
-12. What are the different types of file permissions in Linux? How do you change them?
-13. How do you check network connectivity to a remote host?
-14. How do you check for open ports on a Linux server?
-15. What is the purpose of the `/etc/hosts` file?
-16. What is `SSH`? How would you set up passwordless SSH?
-17. How do you list all running processes on a system?
-18. How would you terminate a process? What is a "zombie process"?
-19. Explain the Linux boot process.
-20. How do you start, stop, and restart a service?
-21. What are `cron` jobs?
-22. What commands would you use to monitor a server's performance?
-23. How do you check the kernel version of a Linux system?
-24. What are some common ways to diagnose a Linux server that won't boot?
-25. What are "load averages" and what do they indicate?
-26. How do you create, delete, and manage users and groups in Linux?
-27. What is the purpose of the `/etc/passwd` and `/etc/shadow` files?
-28. What are some basic security best practices for a Linux server?
-29. Explain `SELinux` or `AppArmor`.
-30. What is the `#!/bin/bash` line at the start of a script?
-31. What's the difference between a shell script and a Python script?
-32. How would you automate a repetitive task using a shell script?
-33. What is DevOps and how does Linux fit into a DevOps environment?
-34. What are the differences between different Linux distributions?
-35. Explain the role of a package manager.
-36. Describe a time you had to troubleshoot a complex issue on a Linux server.
-
-***
-
-### Maven
-1. What is the `pom.xml` file?
-2. What are the minimum required elements in `pom.xml`?
-3. What command is used to create a new Maven project?
-4. What are Maven repositories and their types?
-5. What is a Maven artifact?
-6. Why is Maven said to use "convention over configuration"?
-7. What is transitive dependency in Maven?
-8. How do you change the local repository path in Maven?
-9. What is dependency exclusion in Maven?
-10. What is a Super POM in Maven?
-11. What is the Maven lifecycle, and what are its phases?
-12. What are the goals in Maven?
-13. What does the `mvn clean` command do?
-14. What is the difference between `install` and `deploy` in Maven?
-15. How do you skip tests in Maven? (Command and use case)
-16. How can we change the build output file extension in Maven?
-17. If we need to change the template of a Maven project, where can we do it?
-18. What are build profiles in Maven?
-19. What are you using as a remote repository in your project?
-20. How do you publish Maven artifacts to Nexus or Artifactory?
-21. How do you authenticate Maven with a remote repository?
-22. How does Maven integrate with Jenkins?
-23. How do you handle Maven versioning in a CI/CD pipeline?
-24. How do you speed up Maven builds?
-25. How do you resolve dependency conflicts in Maven?
-26. How do you use Maven inside a Docker container?
-27. How do you analyze a failing Maven build?
-28. What is the difference between Ant and Maven?
-29. How does Maven help in DevOps automation?
-30. What are the key elements that Maven takes care of?
-
-***
-
-### Jenkins
-1. Do you have separate Jenkins servers for each environment?
-2. On which language Jenkins is written?
-3. What are the types of projects in Jenkins?
-4. What is the syntax of a scripted and declarative pipeline?
-5. What is the Jenkins CLI command to start a Jenkins server?
-6. What is CI/CD?
-7. Some tools for CI/CD?
-8. What are the benefits of Continuous Integration?
-9. What are the installation steps of Jenkins?
-10. Some errors faced while creating pipelines and debugging methods?
-11. What is the syntax for a pipeline?
-12. What is the default Jenkins home directory?
-13. What are the ways to automate a build trigger?
-14. If we have to keep only 5 old builds, how do you do that?
-15. How to create a Jenkins backup?
-16. What are the Jenkins security best practices?
-17. How do you deploy an application in Jenkins?
-18. What is a Multibranch pipeline project?
-19. How to set a Jenkins build to fail based on a specific word in console output?
-20. What are active and reactive parameters?
-21. How to use if-else in a scripting pipeline?
-22. Explain the master and slave architecture.
-23. What is a Jenkins shared library, why is it used, and its structure?
-24. Some most useful Jenkins plugins?
-25. A Jenkins build fails due to a missing dependency but runs perfectly fine on the local machine - what to do?
-26. A Jenkins build runs out of disk space, causing build failure - how to resolve?
-27. After restarting, Jenkins remains stuck at the preparing Jenkins or initialization stage - why?
-28. A Jenkins job is queued but doesn't start - what to do?
-29. Have you worked on Jenkins?
-30. When you run the pipeline, is it on the static space or dynamic space or directly on the master?
-31. Can you tell me the basic stages and the flow of your pipeline?
-32. Do you monitor build check-ins?
-33. Is your current project based on Java?
-34. Do you know how to create projects and configure check-ins?
-35. Do you create Jenkins pipelines using declarative or freestyle syntax?
-36. What are the different stages in a Jenkins declarative pipeline?
-37. **How is the CI/CD pipeline setup in your project? What are the security tools integrated?**
-38. How do you manage them?
-39. Write a rough pipeline script for microservices architecture.
-40. How do you find errors in the pipelines?
-41. Explain the CI/CD workflow you follow and the kind of pipeline you use.
-42. How do you define and invoke pipelines in Jenkins?
-43. What are shared libraries in Jenkins, and how are they written and defined?
-44. What kind of applications do you deploy using Jenkins pipelines, and what deployment tools do you use?
-45. If the Jenkins pipeline runs but the build doesn’t happen, what possible issues could be causing it?
-46. What is the purpose of a webhook, and how is it used in a CI/CD pipeline?
-47. What branching strategy do you follow, and how do you handle merges to avoid breaking the release branch?
-48. If a bug appears in production, what’s your approach to resolving it?
-49. Describe your typical deployment flow and CI/CD workflow.
-50. What stages do you define in your Jenkins pipeline, and how do you ensure full quality checks during deployment?
-51. How do you use Jenkins shared libraries? Explain their typical structure and how they are integrated into your Jenkinsfiles.
-52. What have you done with Jenkins?
-53. What was the CI/CD pipeline used for — infra or app deployment?
-54. Can you pass runtime parameters in a Jenkins pipeline?
-55. Jobs often land in build queue — how can we get notified?
-56. Can you explain the Jenkins architecture (nodes and controller)?
-57. Indexes within an application — what is an index?
-58. How do you monitor the pipelines?
-59. What is the difference between scripted and declarative pipelines in Jenkins?
-60. **Your team is moving from an on-prem Jenkins setup to a cloud-based CI/CD solution like GitLab CI or GitHub Actions. What is your migration plan?**
-61. **You have a long-running CI/CD pipeline, and you want to reduce the build time. What steps would you take to optimize it?**
-
-***
-
-### Docker
-1. Syntax of Dockerfile
-2. Difference between `CMD`, `ENTRYPOINT`, and `RUN`
-3. What is Docker Stack
-4. Command to remove unwanted network
-5. Can you overwrite environment variables
-6. Difference between Docker and Kubernetes
-7. Command to run Docker Compose file
-8. Components of Docker
-9. Difference between Docker Image and Container
-10. Flow of building a Docker image
-11. Difference between Repository and Registry
-12. Commands to build a Docker image and run a container
-13. How to optimize Dockerfile
-14. Best practices to write Dockerfile
-15. Can Docker containers communicate with each other
-16. Command to get running containers
-17. How to remove unused containers and dangling images
-18. What are dangling images
-19. Moving an image to another server without using a registry concept
-20. Difference between Docker Stop and Docker Kill
-21. Difference between Docker Run and Docker Create
-22. How to mention environment variables
-23. How to use secrets in Docker
-24. How to troubleshoot issues in any container
-25. Difference between `COPY` and `ADD`
-26. How to store data in Docker containers
-27. Explain networking in Docker
-28. Difference between Dockerfile and Docker Compose file
-29. If one service is dependent on another, how to create it
-30. What is Docker Stack
-31. Difference between Docker Swarm and Kubernetes
-32. How to do OS upgrades in containers
-33. Creating service on a particular node
-34. What is Docker Swarm
-35. Architecture of Docker Swarm
-36. How to join worker nodes to master
-37. Command to create service
-38. Sample Docker Compose file
-39. Two modes of services created
-40. Number of clusters generally used in your company
-41. Number of containers in your current project
-42. Version of Docker being used
-43. Multi-host networking with Docker Swarm
-44. How to pass arguments in Dockerfile
-45. Command to give a custom Dockerfile name while building an image
-46. What is multi-stage Docker build?
-47. What are the stages in a Docker image build?
-48. Why do we use `ENTRYPOINT` and `CMD` instructions?
-49. How do you scan Docker images—both during build and at the registry level? Are you using any extensions or tools for image scanning?
-50. How do you pass environment variables during Docker build commands?
-51. What services do you use for storing Docker images?
-52. Which container registry do you use for storing Docker images?
-
-***
-
 ### Kubernetes
 1. Kubernetes Architecture
 2. Command to run Kubernetes Manifest
-3. **What happens when the master node fails; will the worker node keep running**
+3. What happens when the master node fails; will the worker node keep running
 4. What is `etcd` used for
 5. Types of scaling used
 6. Running instructions before deployment
@@ -213,9 +18,9 @@
 17. What is the role of `kubelet`
 18. What are day to day activites on Kubernetes
 19. What the difference between stateful set and demon set why we use it
-20. **If there is an update in an application and it is already deployed in Kubernetes how will it be done**
-21. **In case of blue green deployement how will be it done in Kubernetes**
-22. **Which file i will make a change for doing blue green deployment**
+20. If there is an update in an application and it is already deployed in Kubernetes how will it be done
+21. In case of blue green deployement how will be it done in Kubernetes
+22. Which file i will make a change for doing blue green deployment
 23. How do you add repositories in the Helm chart?
 24. How do you work on Kubernetes CMD? How do you list the pods?
 25. If you want to delete a pod, what’s the command?
@@ -234,11 +39,11 @@
 38. Is Jenkins integrated with Docker in your current setup?
 39. Are you working with Kubernetes? What activities do you perform in Kubernetes?
 40. How do you list pods using `kubectl` commands?
-41. **How do you troubleshoot pod logs in Kubernetes?**
-42. **You are using an on-prem Kubernetes setup — how would you upgrade Kubernetes from one version to another?**
-43. **What is the difference between upgrading the control plane and worker nodes?**
-44. **Before upgrading, what steps will you take to ensure safety and compatibility?**
-45. **What kind of backup will you take — cold backup or `etcd` backup?**
+41. How do you troubleshoot pod logs in Kubernetes?
+42. You are using an on-prem Kubernetes setup — how would you upgrade Kubernetes from one version to another?
+43. What is the difference between upgrading the control plane and worker nodes?
+44. Before upgrading, what steps will you take to ensure safety and compatibility?
+45. What kind of backup will you take — cold backup or `etcd` backup?
 46. From a Kubernetes security perspective, what are the best practices you follow in an ADM environment?
 47. Do you enable audit logs in Kubernetes? Why is that important?
 48. What are pre-requisites to upgrade a K8s cluster?
@@ -247,7 +52,7 @@
 51. What monitoring tools are setup? Have you set the alerts and tell me some common errors you faced related to pod management.
 52. What are manifest files?
 53. How do you create and manage Kubernetes clusters (using tools like Terraform), and what are the master and worker nodes?
-54. **What are common Kubernetes errors you’ve faced (like `CrashLoopBackOff`, `ImagePullError`), and how did you resolve them?**
+54. What are common Kubernetes errors you’ve faced (like `CrashLoopBackOff`, `ImagePullError`), and how did you resolve them?
 55. What is the command to access a pod and how can you define or create a Kubernetes class or object?
 56. Explain the folder structure of a basic Helm chart. What commands do you use to deploy with Helm?
 57. How do you handle authentication for EKS clusters and store secrets securely in your environment?
@@ -257,24 +62,28 @@
 61. What is the difference between a ReplicaSet and a Deployment?
 62. What does a Deployment support (updates, rollback, versioning)?
 63. What is a ValidatingWebhookConfiguration and MutatingWebhookConfiguration?
-64. **PVCs are stuck in Pending state due to storage bottleneck — how do you troubleshoot?**
-65. **Worker node AMI replacement caused some pods to remain in Terminating state — how do you investigate and remove them safely?**
-66. **How do you troubleshoot out-of-memory (OOM) errors?**
-67. **Some pods are Pending and fail to schedule — what could be the reasons?**
-68. **Pods fail to start due to image pull or “image full backup” errors — how do you fix it?**
+64. PVCs are stuck in Pending state due to storage bottleneck — how do you troubleshoot?
+65. Worker node AMI replacement caused some pods to remain in Terminating state — how do you investigate and remove them safely?
+66. How do you troubleshoot out-of-memory (OOM) errors?
+67. Some pods are Pending and fail to schedule — what could be the reasons?
+68. Pods fail to start due to image pull or “image full backup” errors — how do you fix it?
 69. How does the Deployment know which registry and user to pull the image from?
-70. **How do you manage pulling thousands of images across nodes automatically?**
-71. **Pods in a CrashLoopBackOff — how do you troubleshoot?**
-72. **Pods failing due to resource constraints — how do you increase memory/CPU?**
-73. **How do you scale resources at the node level (not pod level)?**
-74. **How do you ensure zero-downtime deployments?**
-75. **Cluster Autoscaler is enabled but new nodes are not being created — how do you troubleshoot?**
-76. **Some nodes in the cluster are in NotReady state — how do you investigate?**
+70. How do you manage pulling thousands of images across nodes automatically?
+71. Pods in a CrashLoopBackOff — how do you troubleshoot?
+72. Pods failing due to resource constraints — how do you increase memory/CPU?
+73. How do you scale resources at the node level (not pod level)?
+74. How do you ensure zero-downtime deployments?
+75. Cluster Autoscaler is enabled but new nodes are not being created — how do you troubleshoot?
+76. Some nodes in the cluster are in NotReady state — how do you investigate?
 77. How do you manage worker node auto-scaling — Carpenter vs Cluster Autoscaler?
 78. What are the types of containers?
 79. What is the difference between a liveness probe and a readiness probe? When would you use each?
-80. **Your application deployment in Kubernetes is failing with a `CrashLoopBackOff` error. How would you troubleshoot this?**
-81. **You have an application that is running but has become unresponsive due to a deadlock. How would you configure a probe to automatically handle this situation? What if the application is just starting up and needs time to load data before it can accept traffic?**
+80. Your application deployment in Kubernetes is failing with a `CrashLoopBackOff` error. How would you troubleshoot this?
+81. You have an application that is running but has become unresponsive due to a deadlock. How would you configure a probe to automatically handle this situation? What if the application is just starting up and needs time to load data before it can accept traffic?
+82. **What is a Pod Disruption Budget (PDB) in Kubernetes, and how does it help in maintaining high availability of applications?**
+83. **Explain the difference between `minAvailable` and `maxUnavailable`.**
+84. **How does PDB interact with `kubectl drain` or rolling updates?**
+85. **Give a YAML example of PDB for a Deployment with 5 pods, ensuring at least 3 are always available.**
 
 ***
 
@@ -352,7 +161,7 @@
 41. How do you use Ansible Vault to manage secrets?
 42. What is Ansible, and what is its purpose?
 43. What language do you use in Ansible?
-44. **You have an Ansible playbook that is idempotent, but a specific task is consistently reporting "changed" even when no changes are made. How would you troubleshoot this?**
+44. You have an Ansible playbook that is idempotent, but a specific task is consistently reporting "changed" even when no changes are made. How would you troubleshoot this?
 
 ***
 
@@ -395,7 +204,7 @@
 36. How do you manage the same infrastructure for different environments in Terraform?
 37. How do you define module dependency in Terraform?
 38. Can you import manually created resources into Terraform?
-39. **A Terraform `apply` command failed halfway through. What do you do to recover and ensure the state is consistent with the infrastructure?**
+39. A Terraform `apply` command failed halfway through. What do you do to recover and ensure the state is consistent with the infrastructure?
 
 ***
 
@@ -428,9 +237,9 @@
 26. How can I resolve conflicts?
 27. Do you have any idea about `git rebase`?
 28. What branching strategy do you use?
-29. **How to avoid pushing sensitive files to a remote repository?**
-30. **Cloning a particular branch with the last commit ID.**
-31. **Making a teammate track a renamed file after cloning a project.**
+29. How to avoid pushing sensitive files to a remote repository?
+30. Cloning a particular branch with the last commit ID.
+31. Making a teammate track a renamed file after cloning a project.
 
 ***
 
@@ -551,8 +360,8 @@
 99. What are the things you can implement to save cost?
 100. Do you have experience working on autoscaling?
 101. Can you contact AWS to know which all services you have logged on to?
-102. **Your application is experiencing high latency during peak hours. You suspect it's a scaling issue with your EC2 instances in an Auto Scaling Group. How do you diagnose and resolve this?**
-103. **A junior developer has accidentally deleted a critical S3 bucket, and there are no backups. What steps would you take to recover?**
+102. Your application is experiencing high latency during peak hours. You suspect it's a scaling issue with your EC2 instances in an Auto Scaling Group. How do you diagnose and resolve this?
+103. A junior developer has accidentally deleted a critical S3 bucket, and there are no backups. What steps would you take to recover?
 
 ***
 
@@ -566,9 +375,9 @@
 7. How do you secure secrets in Kubernetes? (KMS, Secrets Manager, HashiCorp Vault)
 8. Explain AWS GuardDuty, Inspector, and Config.
 9. How do you secure S3 buckets? (Block public access, bucket policies, encryption)
-10. **A production system has been compromised. What immediate actions would you take?**
-11. **You need to perform a database migration that requires downtime, but your team wants to achieve a zero-downtime deployment. How would you approach this?**
-12. **A developer wants to deploy a new microservice that requires a database password. How would you securely manage this secret in your CI/CD pipeline and Kubernetes environment?**
+10. A production system has been compromised. What immediate actions would you take?
+11. You need to perform a database migration that requires downtime, but your team wants to achieve a zero-downtime deployment. How would you approach this?
+12. A developer wants to deploy a new microservice that requires a database password. How would you securely manage this secret in your CI/CD pipeline and Kubernetes environment?
 
 ***
 
