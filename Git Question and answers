@@ -1,0 +1,160 @@
+### Git
+1. What is source code management
+
+“Source Code Management is the process of tracking and managing changes to code, enabling collaboration, version control, and rollback using tools like Git.”
+
+2. Advantages of source code management
+
+Advantages of Source Code Management (SCM):
+
+Version Control – Keeps track of all changes with history.
+Collaboration – Multiple developers can work on the same project.
+Branching & Merging – Safe experimentation without disturbing main code.
+Rollback – Easily revert to previous stable versions.
+Code Integrity – Prevents overwriting and conflicts.
+Traceability – Who changed what and why is always recorded.
+
+
+3. Available source code management tools in the market
+
+git ,gitlab, bitbucket
+4. What is Git and GitHub
+
+“Git is a distributed version control system, and GitHub is a cloud platform that hosts Git repositories with added collaboration and DevOps features.”
+
+5. Advantages of Git
+
+Advantages of Git:
+
+Distributed system – Every developer has a full copy of the repo.
+Fast and efficient – Handles small to very large projects quickly.
+Branching & merging – Easy, lightweight, and powerful.
+Collaboration – Multiple developers can work in parallel.
+Version history – Complete change tracking and rollback.
+Open-source & widely adopted – Huge community, supported by many platforms (GitHub, GitLab, Bitbucket).
+Integrity – Data stored using checksums (SHA-1), ensuring code safety.
+
+6. Stages in Git
+
+Stages in Git:
+
+Working Directory – Where you modify files.
+Staging Area (Index) – Where changes are added (git add) before committing.
+Local Repository – Where committed versions are stored (git commit).
+Remote Repository – Central/shared repo on platforms like GitHub/GitLab (git push).
+
+7. Common branching strategy in Git; what is used in your organization
+
+Common Git Branching Strategies:
+
+Feature Branching – Separate branch for each feature; merged after review.
+Git Flow – Uses main, develop, feature, release, hotfix branches.
+GitHub Flow – Lightweight; main + feature branches, frequent merges.
+Trunk-Based Development – Small, frequent commits directly to main with short-lived branches.
+In my organization, we mostly use Feature Branching with pull requests — every new feature or bug fix goes into its own branch, gets reviewed, and then merged into main.
+
+8. Types of repositories in Git
+
+Types of Repositories in Git:
+
+Local Repository – Present on your own machine; created with git init or after cloning.
+Remote Repository – Central/shared repo hosted on platforms like GitHub, GitLab, Bitbucket, used for collaboration.
+Bare Repository – A repo without a working directory (only contains version history); usually used as the central repo on a server.
+
+9. What is a snapshot in Git
+
+“A snapshot in Git is the complete state of the project captured at the time of a commit.”
+
+10. What is Git Merge
+
+“Git merge is used to combine changes from one branch into another, integrating their commit histories.”
+
+11. What is Git Stash
+
+Git stash temporarily saves your uncommitted changes so you can work on something else, and later reapply them without committing.
+
+12. What is Git Reset
+
+Git reset is used to undo changes by moving the current branch pointer to a specific commit. It can modify the staging area, the working directory, or both, depending on the reset type.
+
+Types of Git Reset:
+
+--soft → Moves branch pointer, keeps staged & working changes.
+--mixed (default) → Moves branch pointer, unstages changes, keeps working changes.
+--hard → Moves branch pointer and discards all staged and working changes.
+
+13. What is Git Revert
+
+“Git revert undoes a commit by creating a new commit, keeping the project history intact.”
+
+14. Difference between Git Pull, Git Clone, and Git Fetch
+
+“git clone copies a repo, git fetch updates remote changes locally without merging, and git pull fetches and merges changes into the current branch.”
+
+15. Difference between Git Merge and Git Rebase
+
+“Git merge combines branches and preserves history with a merge commit, while Git rebase reapplies commits on another branch to create a linear history.”
+
+16. What is Git Bisect
+
+Git bisect is a binary search tool that helps you find the specific commit that introduced a bug by automatically checking commits between a known good and bad state.
+
+17. What is Git Squash
+
+“Git squash combines multiple commits into one, creating a cleaner and more readable commit history.”
+
+18. What is Git Hooks
+
+Git hooks are scripts that run automatically at certain points in the Git workflow, such as before committing (pre-commit) or after pushing (post-push), to enforce policies or automate tasks.
+
+19. What is Git Cherry-pick
+
+Git cherry-pick applies a specific commit from one branch to another, allowing selective changes without merging the whole branch.
+
+20. Difference between Git and SVN
+
+“Git is a distributed, fast, snapshot-based VCS with lightweight branching, while SVN is centralized, delta-based, and slower for large projects.”
+
+21. What are submodules and modules in Git
+
+“A Git submodule is a repository within a repository for external code, while a module is just a logical component of the project.”
+
+22. Difference between Git Branch and Git Tag
+
+“A Git branch is for ongoing development with a movable pointer, while a Git tag marks a fixed point in history like a release.”
+
+23. Merge specific commit in a branch - what command is used
+
+“To merge a specific commit into a branch, we use git cherry-pick <commit-hash>.”
+
+24. What are the remote and local repositories in your pipeline?
+“Local repositories are on developer machines for development, while remote repositories are central servers used for collaboration and triggering CI/CD pipelines.”
+
+25. Do you know how PRs in Git work?
+
+“A Pull Request is a request to merge code from one branch to another, enabling review, discussion, and automated checks before merging.”
+
+26. How can I resolve conflicts?
+
+Conflicts occur when changes in two branches overlap and Git cannot merge automatically.
+
+Steps to resolve:
+
+Identify conflicting files (git status).
+Open the files and look for conflict markers (<<<<<<<, =======, >>>>>>>).
+Edit manually to keep the desired changes.
+Stage the resolved files (git add <file>).
+Complete the merge (git commit) or continue the rebase (git rebase --continue).
+
+27. Do you have any idea about `git rebase`?
+
+Git rebase moves or reapplies commits from one branch onto another base, creating a linear commit history.
+It is often used to update a feature branch with the latest changes from the main branch without creating a merge commit.
+
+git checkout feature
+git rebase main
+
+
+28. What branching strategy do you use?
+
+In my organization, we follow Feature Branching with PRs — every new feature or bug fix goes into its own branch, gets reviewed, and then merged into main to trigger CI/CD pipelines.
