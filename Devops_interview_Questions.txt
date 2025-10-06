@@ -84,6 +84,14 @@
 83. **Explain the difference between `minAvailable` and `maxUnavailable`.**
 84. **How does PDB interact with `kubectl drain` or rolling updates?**
 85. **Give a YAML example of PDB for a Deployment with 5 pods, ensuring at least 3 are always available.**
+86. What can cause resource exhaustion in Kubernetes?
+87. Sudden traffic spike scenario: system handles 200 requests, but 500 requests arrive — how would you handle this?
+88. How does HPA (Horizontal Pod Autoscaler) behave? How do you define min/max pods, and how does it react to sudden load increase/decrease?
+89. Suppose you have a sudden spike in traffic, and HPA scales pods, then the load goes down immediately — what will happen?
+90. How do you investigate Kubernetes issues using logs, events, and cloud watch?
+91. How do you handle root cause analysis for production issues?
+
+
 
 ***
 
@@ -114,6 +122,9 @@
 24. Explain the folder structure of a basic Helm chart. What commands do you use to deploy with Helm?
 25. How do you handle authentication for EKS clusters and store secrets securely in your environment?
 26. What is email signing and Helm chart signing? Which tools do you use to sign Helm charts?
+27. How would you investigate issues in EKS/Kubernetes? What commands and tools would you use?
+28. If there is a sudden spike in traffic (example: 100 requests to 500 requests), how will you scale your system?
+29. What is EKS, and how is it different from ECS?
 
 ***
 
@@ -240,6 +251,7 @@
 29. How to avoid pushing sensitive files to a remote repository?
 30. Cloning a particular branch with the last commit ID.
 31. Making a teammate track a renamed file after cloning a project.
+32. How can you check the last 6 months of commits on a branch or repository?
 
 ***
 
@@ -255,6 +267,17 @@
 9. monitoring in azure
 10. what are you doing for handling alerts
 11. how will you monitor api endpoint http respose code
+12. Have you ever set up alerts in Grafana?
+13. In Grafana/Prometheus, how do you delay alert firing for a specific duration (e.g., 5 minutes) before alerting?
+14. Have you set up data sources in Grafana? How?
+15. How would you migrate Grafana dashboards to another instance?
+16. Prometheus is primarily used for what?
+17. How do you set up monitoring and alerting in Grafana? Would you set up alerts in Grafana or elsewhere?
+18. Suppose there’s a production error and alerts are coming every 5 minutes, but the fix will take 2 hours. How would you handle noisy alerts?
+19. How would you analyze data in parallel to reach conclusions quickly in an SRE environment?
+
+
+
 
 ***
 
@@ -362,6 +385,10 @@
 101. Can you contact AWS to know which all services you have logged on to?
 102. Your application is experiencing high latency during peak hours. You suspect it's a scaling issue with your EC2 instances in an Auto Scaling Group. How do you diagnose and resolve this?
 103. A junior developer has accidentally deleted a critical S3 bucket, and there are no backups. What steps would you take to recover?
+104. Your application is hosted in the US region, but Indian users are facing latency. You don’t want a full setup in India — what would you do?
+105. If your application was working fine till last hour but suddenly broke, what could be the probable causes?
+106. Sudden traffic spike scenario: system handles 200 requests, but 500 requests arrive — how would you handle this?
+107. In AWS, if you do not want an immediate response for a request, how will you implement an async mechanism?
 
 ***
 
@@ -416,3 +443,4 @@
 1. Have you written any Python scripts to automate tasks? What do they do?
 2. Write a palindrome program in Python.
 3. Explain the palindrome code.
+
