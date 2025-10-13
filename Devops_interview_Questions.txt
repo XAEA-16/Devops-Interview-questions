@@ -125,6 +125,15 @@
 27. How would you investigate issues in EKS/Kubernetes? What commands and tools would you use?
 28. If there is a sudden spike in traffic (example: 100 requests to 500 requests), how will you scale your system?
 29. What is EKS, and how is it different from ECS?
+30.  What are task definitions and services in ECS?
+31.  If you created a service and associated it with a load balancer, how can you change the listener of the load balancer?
+32.  Can you change the target group of any ECS service if you created these ones?
+33.  Do you know about ECR Replication?
+34.  Have you created or deployed applications on EKS?
+35.  Do you know the EKS architecture or governance policies?
+36.  Pod is in a failed state in EKS — how do you troubleshoot it?
+37.  ECS vs EKS — when would you choose each?
+38.  How do you handle authentication for EKS clusters and store secrets securely in your environment?
 
 ***
 
@@ -216,6 +225,9 @@
 37. How do you define module dependency in Terraform?
 38. Can you import manually created resources into Terraform?
 39. A Terraform `apply` command failed halfway through. What do you do to recover and ensure the state is consistent with the infrastructure?
+40. Can you explain the Terraform plan and its purpose?
+41. Why did you choose Terraform over Boto3 for infrastructure provisioning?
+42. Write a terraform script for VPC architecture for production.
 
 ***
 
@@ -279,117 +291,122 @@
 
 
 
-***
+*** AWS ***
 
-### AWS
-1. What is the role of IAM roles and policies?
-2. Can you explain the Terraform plan and its purpose?
-3. What is AWS Lambda, and how does it work?
-4. How do you invoke a Lambda function, and where do you configure it?
-5. Can you describe how Lambda handles scaling and event-based invocations?
-6. What is Amazon CloudWatch, and have you configured any custom metrics?
-7. What metrics are available on your CloudWatch dashboard?
-8. How do you configure CPU utilization on your CloudWatch dashboard?
-9. How do you attach an SSL certificate to an S3 bucket?
-10. What type of encryption have you implemented in your project?
-11. If an S3 bucket has a read-only policy, can you modify objects in the bucket?
-12. Why did you choose Terraform over Boto3 for infrastructure provisioning?
-13. What is a Content Delivery Network (CDN), and how does it work?
-14. Have you created a Jenkins pipeline for your project?
-15. How do you attach policies to IAM users, either individually or by group?
-16. What type of deployment strategies are you using in your project?
-17. Have you used any tools to create customized Amazon Machine Images (AMIs)?
-18. What is connection draining, and how does it work?
-19. How does an Elastic Load Balancer (ELB) distribute traffic?
-20. What is auto-scaling, and how does it work?
-21. Can you describe the different types of Load Balancers and provide examples?
-22. What is the maximum runtime for a Lambda function?
-23. What is the maximum memory size for a Lambda function?
-24. How can you increase the runtime for a Lambda function?
-25. What automations have you performed using Lambda in your project?
-26. Why did you choose Terraform over Boto3 for infrastructure provisioning?
-27. What modules have you used in your Lambda function?
-28. Have you created an SNS topic for your project?
-29. If you've exhausted IP addresses in your VPC, how would you provision new resources?
-30. What is Groovy, and how is it used in Jenkins?
-31. Why do you use Groovy in Jenkins, and where do you save Jenkins files?
-32. What is the purpose of access keys and secret keys in AWS?
-33. What environments have you set up for your project?
-34. Do you use the same AWS account for all environments?
-35. Where do you write and save your Lambda function code?
-36. What are services in aws
-37. Why do we use Amazon VPC?
-38. What types of load balancers are you using?
-39. Can I have multiple targets in a Network Load Balancer?
-40. What are task definitions and services in ECS?
-41. If you created a service and associated it with a load balancer, how can you change the listener of the load balancer?
-42. Can you change the target group of any ECS service if you created these ones?
-43. Do you know about ECR Replication?
-44. What is the maximum range you can create a VPC of?
-45. What is the minimum CIDR block you can create a VPC with?
-46. Out of minimum CIDR IP, how many VPCs can we create?
-47. What are NAT gateways?
-48. Tell me about the VPC structure setup in your project.
-49. Write a terraform script for VPC architecture for production.
-50. How many objects can a S3 bucket store?
-51. What are IAM roles and policies?
-52. How do you manage and connect services like DBs, EC2, EKS, or ECS? Include the command to connect to ECS.
-53. How do you establish a connection with databases in your deployments or infrastructure setup?
-54. How do you handle authentication for EKS clusters and store secrets securely in your environment?
-55. How do you create AWS Lambda functions and manage the artifacts for deployment?
-56. What is Load Balancer
-57. Backup snapshot-related questions
-58. What are the different types of disks that are available in aws
-59. Have you used load balancing based on route 53
-60. What AWS services are you familiar with?
-61. Difference between public and private subnet?
-62. How can EC2 access S3 privately?
-63. How do you set up private connectivity between EC2 and S3?
-64. Have you created or deployed applications on EKS?
-65. Do you know the EKS architecture or governance policies?
-66. Pod is in a failed state in EKS — how do you troubleshoot it?
-67. What is a Transit Gateway?
-68. How do you connect two VPCs in different AWS accounts?
-69. Is VPC peering a scalable option?
-70. ECS vs EKS — when would you choose each?
-71. You don’t need to retrieve data quickly and it's okay if it's deleted after 30 days — what will you use in S3?
-72. What are your options in S3 for long-term storage?
-73. How many types of Load Balancers are there in AWS?
-74. When to use ALB and when to use NLB?
-75. App is hosted on EC2 and DB is in RDS — how to host the app on the internet?
-76. If EC2 is in a private subnet, how can we make the app public?
-77. When should domain mapping be done?
-78. What do you enter when mapping — IP or DNS of Load Balancer?
-79. What are the types of S3 buckets?
-80. What is the difference between S3 Standard and Glacier?
-81. How do you secure S3 buckets?
-82. What other than lifecycle policies do you use with S3?
-83. Why do you use Intelligent Tiering?
-84. Explain cross-region replication in S3.
-85. How can we monitor and track S3?
-86. One of my applications is down on EC2 — how do you troubleshoot?
-87. EC2 is in terminated state — what will you do first?
-88. How will you set up an alert for EC2 termination?
-89. What is CloudWatch used for?
-90. What is CloudTrail used for?
-91. What is the difference between CloudWatch and CloudTrail?
-92. What is the difference between SNS and SQS?
-93. What are decoupled systems?
-94. Any idea about EventBridge?
-95. How can two servers (Mumbai & Chicago) SSH each other?
-96. You have only one public IP — how can you connect the servers?
-97. Can you tell me something about VPC peering?
-98. I just want to increase memory in the same EC2 instance — can I do that?
-99. What are the things you can implement to save cost?
-100. Do you have experience working on autoscaling?
-101. Can you contact AWS to know which all services you have logged on to?
-102. Your application is experiencing high latency during peak hours. You suspect it's a scaling issue with your EC2 instances in an Auto Scaling Group. How do you diagnose and resolve this?
-103. A junior developer has accidentally deleted a critical S3 bucket, and there are no backups. What steps would you take to recover?
-104. Your application is hosted in the US region, but Indian users are facing latency. You don’t want a full setup in India — what would you do?
-105. If your application was working fine till last hour but suddenly broke, what could be the probable causes?
-106. Sudden traffic spike scenario: system handles 200 requests, but 500 requests arrive — how would you handle this?
-107. In AWS, if you do not want an immediate response for a request, how will you implement an async mechanism?
+**Identity and Access Management (IAM)**
 
+1.  What is the role of IAM roles and policies?
+2.  How do you attach policies to IAM users, either individually or by group?
+3.  What are IAM roles and policies?
+4.  What is the purpose of access keys and secret keys in AWS?
+
+**Virtual Private Cloud (VPC) & Networking**
+
+1.  Why do we use Amazon VPC?
+2.  If you've exhausted IP addresses in your VPC, how would you provision new resources?
+3.  What is the maximum range you can create a VPC of?
+4.  What is the minimum CIDR block you can create a VPC with?
+5.  Out of minimum CIDR IP, how many VPCs can we create?
+6.  What are NAT gateways?
+7.  Tell me about the VPC structure setup in your project.
+8.  Difference between public and private subnet?
+9.  How can EC2 access S3 privately?
+10. How do you set up private connectivity between EC2 and S3?
+11. What is a Transit Gateway?
+12. How do you connect two VPCs in different AWS accounts?
+13. Is VPC peering a scalable option?
+14. How can two servers (Mumbai & Chicago) SSH each other?
+15. You have only one public IP — how can you connect the servers?
+16. Can you tell me something about VPC peering?
+
+**Compute Services (EC2 & Load Balancing)**
+
+1.  What is connection draining, and how does it work?
+2.  How does an Elastic Load Balancer (ELB) distribute traffic?
+3.  What is auto-scaling, and how does it work?
+4.  Can you describe the different types of Load Balancers and provide examples?
+5.  What type of deployment strategies are you using in your project?
+6.  Have you used any tools to create customized Amazon Machine Images (AMIs)?
+7.  What is Load Balancer?
+8.  What are the different types of disks that are available in aws?
+9.  What types of load balancers are you using?
+10. Can I have multiple targets in a Network Load Balancer?
+11. How many types of Load Balancers are there in AWS?
+12. When to use ALB and when to use NLB?
+13. App is hosted on EC2 and DB is in RDS — how to host the app on the internet?
+14. If EC2 is in a private subnet, how can we make the app public?
+15. One of my applications is down on EC2 — how do you troubleshoot?
+16. EC2 is in terminated state — what will you do first?
+17. How will you set up an alert for EC2 termination?
+18. I just want to increase memory in the same EC2 instance — can I do that?
+19. Do you have experience working on autoscaling?
+20. Your application is experiencing high latency during peak hours. You suspect it's a scaling issue with your EC2 instances in an Auto Scaling Group. How do you diagnose and resolve this?
+
+**Serverless (AWS Lambda)**
+
+1.  What is AWS Lambda, and how does it work?
+2.  How do you invoke a Lambda function, and where do you configure it?
+3.  Can you describe how Lambda handles scaling and event-based invocations?
+4.  What is the maximum runtime for a Lambda function?
+5.  What is the maximum memory size for a Lambda function?
+6.  How can you increase the runtime for a Lambda function?
+7.  What automations have you performed using Lambda in your project?
+8.  What modules have you used in your Lambda function?
+9.  Where do you write and save your Lambda function code?
+10. How do you create AWS Lambda functions and manage the artifacts for deployment?
+
+**Storage (Amazon S3)**
+
+1.  How do you attach an SSL certificate to an S3 bucket?
+2.  What type of encryption have you implemented in your project?
+3.  If an S3 bucket has a read-only policy, can you modify objects in the bucket?
+4.  How many objects can a S3 bucket store?
+5.  You don’t need to retrieve data quickly and it's okay if it's deleted after 30 days — what will you use in S3?
+6.  What are your options in S3 for long-term storage?
+7.  What are the types of S3 buckets?
+8.  What is the difference between S3 Standard and Glacier?
+9.  How do you secure S3 buckets?
+10. What other than lifecycle policies do you use with S3?
+11. Why do you use Intelligent Tiering?
+12. Explain cross-region replication in S3.
+13. How can we monitor and track S3?
+14. A junior developer has accidentally deleted a critical S3 bucket, and there are no backups. What steps would you take to recover?
+
+**Monitoring, Logging, and Messaging (CloudWatch, CloudTrail, SNS, SQS)**
+
+1.  What is Amazon CloudWatch, and have you configured any custom metrics?
+2.  What metrics are available on your CloudWatch dashboard?
+3.  How do you configure CPU utilization on your CloudWatch dashboard?
+4.  Have you created an SNS topic for your project?
+5.  What is CloudWatch used for?
+6.  What is CloudTrail used for?
+7.  What is the difference between CloudWatch and CloudTrail?
+8.  What is the difference between SNS and SQS?
+9.  What are decoupled systems?
+10. Any idea about EventBridge?
+11. In AWS, if you do not want an immediate response for a request, how will you implement an async mechanism?
+
+**Content Delivery & DNS**
+
+1.  What is a Content Delivery Network (CDN), and how does it work?
+2.  Have you used load balancing based on route 53?
+3.  When should domain mapping be done?
+4.  What do you enter when mapping — IP or DNS of Load Balancer?
+5.  Your application is hosted in the US region, but Indian users are facing latency. You don’t want a full setup in India — what would you do?
+
+**General Architecture & Project Specifics**
+
+1.  What are services in aws?
+2.  How do you manage and connect services like DBs, EC2, EKS, or ECS? Include the command to connect to ECS.
+3.  How do you establish a connection with databases in your deployments or infrastructure setup?
+4.  What AWS services are you familiar with?
+5.  Backup snapshot-related questions.
+6.  What environments have you set up for your project?
+7.  Do you use the same AWS account for all environments?
+8.  What are the things you can implement to save cost?
+9.  Can you contact AWS to know which all services you have logged on to?
+10. If your application was working fine till last hour but suddenly broke, what could be the probable causes?
+11. Sudden traffic spike scenario: system handles 200 requests, but 500 requests arrive — how would you handle this?
 ***
 
 ### Security & Hardening
@@ -436,6 +453,9 @@
 5. What is Prometheus? How does it integrate with EKS?
 6. How do you set up Grafana dashboards for cluster monitoring?
 7. How do you troubleshoot node/pod performance in CloudWatch?
+8. Have you created a Jenkins pipeline for your project?
+9. What is Groovy, and how is it used in Jenkins?
+10. Why do you use Groovy in Jenkins, and where do you save Jenkins files?
 
 ***
 
@@ -443,4 +463,5 @@
 1. Have you written any Python scripts to automate tasks? What do they do?
 2. Write a palindrome program in Python.
 3. Explain the palindrome code.
+
 
