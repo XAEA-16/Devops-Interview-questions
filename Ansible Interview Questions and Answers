@@ -1,0 +1,339 @@
+## 🔧 Ansible Essentials
+
+### 1\. Components of Ansible
+
+The main components of Ansible architecture are:
+
+1.  **Control Node:** The machine where Ansible is installed and from which playbooks are executed.
+2.  **Inventory:** A list of managed hosts (servers).
+3.  **Modules:** Units of code that execute specific tasks on managed hosts (e.g., `apt`, `yum`, `service`).
+4.  **Plugins:** Code that augments Ansible's core functionality (e.g., connection plugins, inventory plugins).
+5.  **Playbooks:** YAML files that contain a structured, ordered sequence of tasks (plays and tasks).
+
+### 2\. Ansible Roles
+
+**Roles** are the method for **structuring, standardizing, and reusing** Ansible content. They provide a predictable directory layout for automatically loading variables, tasks, handlers, and other components based on a known file structure.
+
+### 3\. Ansible Galaxy
+
+**Ansible Galaxy** is a **community hub** for sharing and downloading Ansible Roles. It is also the command-line tool (`ansible-galaxy`) used to manage these roles (install, remove, create).
+
+### 4\. What is an ad-hoc command
+
+An **ad-hoc command** is a single, one-off command used to execute a **single Ansible module** on one or more hosts directly from the command line, without writing a playbook.
+*Example: `ansible webservers -m ping`*
+
+### 5\. What is "host" used for and what is "task"; can we write something before "host"
+
+  * **`hosts`:** Specifies the **group or host(s)** from the inventory file on which the following tasks will be executed.
+  * **`tasks`:** A list of ordered actions (module calls) to be executed on the target hosts defined by `hosts`.
+  * **Before `hosts`:** Yes, the first element is usually the **Play** definition, which can include the `name` of the play before specifying the `hosts`.
+
+### 6\. Can Ansible be installed on Windows
+
+No, the **Ansible Control Node** (where you run playbooks) must be a **Unix-like system** (Linux, macOS, BSD). However, Ansible **can manage Windows hosts** using the `winrm` (Windows Remote Management) protocol.
+
+### 7\. Command to check the syntax of a playbook file
+
+The command is **`ansible-playbook --syntax-check [playbook_name.yml]`**. This verifies the YAML formatting and basic Ansible structure without executing any tasks.
+
+### 8\. Command to run a playbook file
+
+The command is **`ansible-playbook [playbook_name.yml]`**.
+
+### 9\. Difference between Ansible and Terraform
+
+| Feature | Ansible | Terraform |
+| :--- | :--- | :--- |
+| **Primary Goal** | **Configuration Management** (Post-provisioning setup, state enforcement). | **Infrastructure as Code (IaC)** (Provisioning and managing cloud/virtual resources). |
+| **Methodology** | **Procedural/Imperative** (Defines *how* to achieve the state). | **Declarative** (Defines the *desired state*). |
+| **State** | **Agentless, no central state file** (relies on facts/idempotency). | **Requires state file** (`terraform.tfstate`) to track resources. |
+
+### 10\. Why is Ansible a preferred configuration management tool
+
+1.  **Agentless:** It connects via SSH (or WinRM), requiring no daemon/agent to be installed on managed hosts.
+2.  **Simplicity:** Uses **YAML** for playbooks, which is highly readable and easy to learn.
+3.  **Idempotency:** Ensures that playbooks can be run repeatedly without causing unintended changes (tools only make changes when necessary).
+
+-----
+
+## 💻 Modules, Facts, and Handlers
+
+### 11\. Main components of Ansible
+
+(See Q1. Key components: Control Node, Inventory, Modules, Playbooks.)
+
+### 12\. Command to run a playbook
+
+(See Q8. **`ansible-playbook [playbook_name.yml]`**.)
+
+### 13\. Have you worked on custom modules? Explain
+
+*(Answer based on experience)* Yes, I've created custom modules in **Python** when core Ansible modules lacked specific functionality for interacting with proprietary APIs (e.g., custom inventory systems or specialized security vaults). Custom modules extend Ansible's capabilities by following the module interface specification.
+
+### 14\. Name some modules you have worked on
+
+  * **`ping`**: Test connectivity and authentication.
+  * **`ansible.builtin.shell`/`ansible.builtin.command`**: Execute arbitrary commands.
+  * **`ansible.builtin.apt`/`ansible.builtin.yum`**: Package management.
+  * **`ansible.builtin.service`**: Start, stop, restart, enable services.
+  * **`ansible.builtin.copy`/`ansible.builtin.template`**: File and configuration management.
+  * **`ansible.builtin.uri`**: Interacting with REST APIs.
+
+### 15\. Can you write a playbook (example)
+
+```yaml
+---
+- name: Install and Start Nginx
+  hosts: webservers
+  become: yes  # Run tasks with root privileges
+  tasks:
+    - name: Ensure Nginx package is installed
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+
+    - name: Ensure Nginx service is running and enabled at boot
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: yes
+```
+
+### 16\. Requirements to install Ansible
+
+1.  A **Control Node** (Linux/Unix/macOS).
+2.  **Python** (version 3.8 or later) installed on the control node.
+3.  **SSH** access to the managed hosts.
+
+### 17\. Have you worked on Ansible ad-hoc commands
+
+*(Answer based on experience)* Yes, I frequently use ad-hoc commands for quick operations like:
+
+  * Checking basic host uptime: `ansible all -m command -a "uptime"`
+  * Restarting a single service across a group: `ansible databases -m service -a "name=postgresql state=restarted"`
+
+### 18\. Fetching server details using Ansible
+
+Server details are fetched automatically using the **`ansible.builtin.setup`** module (which is run by default). This populates **Ansible Facts**, which can be viewed or used in playbooks.
+*Ad-hoc command: `ansible [hostname] -m setup`*
+
+### 19\. What are Ansible Facts
+
+**Ansible Facts** are automatically discovered **variables** that contain information about the managed host's system, such as OS version (`ansible_os_family`), network interfaces (`ansible_default_ipv4.address`), memory, and storage. They are essential for conditional execution.
+
+### 20\. What is "handlers" in Ansible
+
+**Handlers** are special tasks that are **only executed when explicitly notified** by a task. They are typically used for service restarts or configuration reloads that should only happen after a configuration file has actually changed. Handlers are executed once per play, even if notified multiple times.
+
+### 21\. What is loop features in Ansible
+
+**Looping** allows a single task to be executed repeatedly, iterating over a list of items. The primary loop keyword is **`loop`**.
+*Example: Installing multiple packages:*
+
+```yaml
+- name: Install multiple packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - httpd
+    - mysql-server
+    - php
+```
+
+### 22\. Skipping CentOS tasks
+
+Conditional execution is handled using the **`when`** statement combined with **Ansible Facts**.
+
+```yaml
+- name: Install software using yum (CentOS/RHEL)
+  ansible.builtin.yum:
+    name: httpd
+    state: present
+  when: ansible_os_family == "RedHat" # Skip unless OS is RedHat/CentOS
+```
+
+-----
+
+## 🧱 Roles, Vault, and Execution
+
+### 23\. Directory structure of Ansible roles
+
+The standardized directory structure for an Ansible Role:
+
+```
+[role_name]/
+├── defaults/        # Default variables (lowest precedence)
+├── vars/            # Other variables (higher precedence)
+├── tasks/           # Main tasks (main.yml is entry point)
+├── handlers/        # Handlers (main.yml is entry point)
+├── files/           # Static files to be copied
+├── templates/       # Templates (Jinja2) to be processed
+└── meta/            # Role metadata and dependencies
+```
+
+### 24\. What is Ansible Tower
+
+**Ansible Tower** (now **Red Hat Ansible Automation Platform**) is a **web-based UI** and API for managing and scaling Ansible automation. It provides centralized management, visual dashboards, RBAC (Role-Based Access Control), scheduling, and logging.
+
+### 25\. How to encrypt in Ansible
+
+Data is encrypted using **Ansible Vault**. This utility encrypts sensitive data (passwords, keys, API tokens) and stores them in an encrypted file.
+
+### 26\. How to integrate Ansible with Terraform
+
+Terraform is used for **provisioning** the infrastructure (e.g., launching EC2 instances). Ansible is used for **configuration management** on those instances.
+**Integration Flow:**
+
+1.  Terraform launches VMs.
+2.  Terraform uses the **inventory script/plugin** (or local file generation) to output the list of newly provisioned host IPs.
+3.  Ansible uses this dynamic inventory to run playbooks and configure the software on the VMs.
+
+### 27\. Command to run an Ansible playbook with a specific inventory file
+
+**`ansible-playbook -i [inventory_file_path] [playbook_name.yml]`**
+
+### 28\. Example playbook to check service status
+
+```yaml
+---
+- name: Check Nginx service status
+  hosts: webservers
+  tasks:
+    - name: Get status of Nginx service
+      ansible.builtin.service_facts:
+    
+    - name: Debug service status
+      ansible.builtin.debug:
+        msg: "Nginx is running: {{ ansible_facts.services['nginx.service'].state == 'running' }}"
+```
+
+### 29\. Setting up Jump Host in Ansible to access servers without direct access
+
+This is configured using the **`ansible.cfg`** file or in the **inventory file** by setting the `ansible_ssh_common_args` parameter to use `ProxyCommand`.
+
+**Inventory example:**
+
+```ini
+[targets]
+target_host ansible_host=10.0.0.1 ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q user@jump_host_ip"'
+
+[jump_hosts]
+jump_host_ip
+```
+
+### 30\. How to optimize the execution of an Ansible playbook for a large number of servers
+
+1.  **Forks:** Increase the **`forks`** setting in `ansible.cfg` to run more tasks in parallel.
+2.  **Pipelining:** Enable **`pipelining = True`** in `ansible.cfg` to reduce SSH connection overhead.
+3.  **Fact Caching:** Enable **`fact_caching`** (e.g., Redis or JSON) to avoid gathering facts on every single run.
+4.  **Strategy:** Use the **`free`** strategy instead of `linear` to allow hosts to complete tasks as soon as possible, rather than waiting for slow hosts.
+
+### 31\. Error handling in ansible
+
+Error handling is managed through:
+
+1.  **`ignore_errors: yes`:** Continues execution even if a task fails.
+2.  **`changed_when: False`:** Prevents a task from reporting "changed" even if its output suggests a change.
+3.  **`failed_when: [condition]`:** Forces a task to fail based on specific output conditions.
+4.  **`block/rescue/always`:** Similar to try/catch blocks in programming, used to define tasks to run when an error occurs or always run at the end.
+
+### 32\. What is Ansible Vault?
+
+**Ansible Vault** is a feature that enables the **encryption and decryption** of sensitive data files (YAML, JSON) used in Ansible projects. It uses a single password to protect confidential information.
+
+### 33\. What are Ansible Roles?
+
+(See Q2. They are the standardized structure for reusable automation content.)
+
+### 34\. Why are you using Ansible? What have you done with it?
+
+*(Answer based on experience)* I use Ansible primarily because of its **agentless nature** and **simplicity (YAML)**. I've used it to:
+
+  * **Deploy Applications:** Created playbooks to deploy our Java/Node.js artifacts and restart services.
+  * **OS Hardening:** Developed roles to enforce security configurations (firewalls, user accounts).
+  * **Configuration Drift Management:** Ensured all production servers maintain an identical, desired software configuration state.
+
+### 35\. How do you manage dynamic inventory in AWS using Ansible?
+
+I use the **AWS EC2 Inventory Plugin** (available in modern Ansible).
+
+1.  Configure the plugin in a YAML file (`aws_ec2.yml`) by specifying regions and filters (e.g., tags, VPC IDs).
+2.  Ansible uses this plugin to query the AWS API and dynamically generate the list of hosts and group them by tags, making the inventory always up-to-date.
+
+### 36\. Can you show a sample playbook to install Nginx?
+
+(See Q15.)
+
+### 37\. How do you restart Nginx if config is changed?
+
+This is the classic use case for **handlers**.
+
+1.  The task that modifies the config file uses the **`notify`** keyword.
+2.  The `notify` keyword references a named **`handler`** task.
+3.  The handler task (in the `handlers` section) executes the `ansible.builtin.service` module to restart Nginx, but *only if* the notification task reports a "changed" state.
+
+**Example:**
+
+```yaml
+tasks:
+  - name: Copy new Nginx config
+    ansible.builtin.template:
+      src: nginx.conf.j2
+      dest: /etc/nginx/nginx.conf
+    notify: restart nginx  # <-- NOTIFY HANDLER
+
+handlers:
+  - name: restart nginx
+    ansible.builtin.service:
+      name: nginx
+      state: restarted
+```
+
+### 38\. How to use handlers in Ansible and how are they triggered?
+
+(See Q20 and Q37.) Handlers are triggered using the **`notify`** keyword on a task. A handler only executes if the notifying task reports a **"changed"** state (meaning the task actually modified something on the managed host). They are executed at the end of the current play, after all other tasks are complete.
+
+### 39\. What is idempotency in Ansible? How do you handle it?
+
+**Idempotency** is the property that a configuration management action can be run multiple times **without changing the result beyond the initial execution**. If the target system is already in the desired state, the tool does nothing and reports "ok" (not "changed").
+
+**Handling/Ensuring Idempotency:**
+
+  * **Use Declarative Modules:** Prefer modules like `ansible.builtin.apt` (state=`present`) over raw `ansible.builtin.shell` commands.
+  * **Conditional Logic:** Use `when` statements or checks (e.g., before creating a user, check if the user already exists).
+
+### 40\. How to run only a specific task in a long Ansible playbook?
+
+Use the **`--tags`** or **`--start-at-task`** command-line arguments.
+
+  * **`--tags [tag_name]`:** Tags are applied to tasks in the playbook; this runs only tasks with the specified tag.
+  * **`--start-at-task "[Task Name]"`:** Starts execution from the task with the matching name.
+
+### 41\. How do you use Ansible Vault to manage secrets?
+
+1.  **Encrypt Secrets:** Create or encrypt a file: **`ansible-vault create/encrypt [secrets.yml]`**.
+2.  **Reference in Playbook:** Reference variables from the encrypted file in your playbooks: `{{ vault_db_password }}`.
+3.  **Run Playbook:** Provide the vault password during execution: **`ansible-playbook --ask-vault-pass [playbook.yml]`** or use a vault password file: **`--vault-password-file /path/to/vault.txt`**.
+
+### 42\. What is Ansible, and what is its purpose?
+
+**Ansible** is an **open-source automation engine** for configuration management, application deployment, and task automation. Its primary purpose is to **automate the process of provisioning and managing software and infrastructure** across a large number of servers efficiently, securely, and consistently.
+
+### 43\. What language do you use in Ansible?
+
+Ansible is written in **Python**. Playbooks are written in **YAML** (a human-readable data serialization standard). Templates within playbooks use the **Jinja2** templating language.
+
+### 44\. You have an Ansible playbook that is idempotent, but a specific task is consistently reporting "changed" even when no changes are made. How would you troubleshoot this?
+
+This is a common **idempotency breach**. The issue is usually with a module that doesn't properly check the remote state before acting.
+
+**Troubleshooting Steps:**
+
+1.  **Examine the Task:** Identify the specific module causing the change (often `ansible.builtin.shell`, `ansible.builtin.command`, or `ansible.builtin.copy`/`ansible.builtin.template`).
+2.  **`ansible.builtin.template`/`ansible.builtin.copy`:** If using these, check for trailing whitespace or differences in file permissions/ownership in the YAML that cause a change on every run.
+3.  **`ansible.builtin.shell`/`ansible.builtin.command`:** These modules are **not inherently idempotent**. Fix by:
+      * Replacing with a declarative module (e.g., use `ansible.builtin.service` instead of `shell: service nginx start`).
+      * Adding manual check logic using **`creates=[file_path]`** (to skip if a file exists) or defining the expected output using **`changed_when: [condition]`** to override the default "changed" result.
+4.  **Use `--check`:** Run the playbook with the **`--check`** (dry run) flag to see the expected changes without actually applying them.
