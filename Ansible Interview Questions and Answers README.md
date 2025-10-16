@@ -833,9 +833,188 @@ group_vars/all.yml
 ```bash
 ansible-playbook -i inventories/staging/hosts site.yml
 ```
+---
+
+## **69. Delegation & `run_once`**
+
+**Scenario:** Run a task only on a specific host or once across all hosts.
+
+**Answer:**
+Use `delegate_to` to target a host and `run_once: true` to execute a task just once.
+
+```yaml
+- name: Gather OS info from DB host only
+  shell: cat /etc/os-release
+  delegate_to: "{{ groups['db'][0] }}"
+  run_once: true
+```
+
+✅ **Explanation:**
+
+* `delegate_to` sends the task to the host you specify.
+* `run_once` ensures it executes only once, not on all hosts.
 
 ---
 
+## **70. Fact Caching & Custom Facts**
 
+**Scenario:** Reduce fact gathering time and create custom facts.
 
+**Answer:**
 
+1. **Enable fact caching** in `ansible.cfg`:
+
+```ini
+[defaults]
+gathering = smart
+fact_caching = jsonfile
+fact_caching_connection = /tmp/ansible_cache
+fact_caching_timeout = 86400
+```
+
+2. **Create custom facts** on a managed host:
+
+```bash
+# /etc/ansible/facts.d/myfact.fact
+{
+  "department": "devops",
+  "owner": "mihir"
+}
+```
+
+```yaml
+- name: Print custom fact
+  debug:
+    msg: "{{ ansible_local.myfact.department }}"
+```
+
+✅ **Explanation:**
+
+* Fact caching avoids repeated SSH/fact gathering for speed.
+* Custom facts let you store host-specific metadata.
+
+---
+
+## **71. Advanced Loops**
+
+**Scenario:** Loop through complex data structures with multiple attributes.
+
+**Answer:**
+
+```yaml
+- name: Create users with shells
+  user:
+    name: "{{ item.name }}"
+    shell: "{{ item.shell }}"
+    state: present
+  loop:
+    - { name: 'dev', shell: '/bin/bash' }
+    - { name: 'test', shell: '/bin/zsh' }
+```
+
+✅ **Explanation:**
+
+* Loops can handle dictionaries and lists.
+* Use `loop_control` if you want to customize index or labels.
+
+```yaml
+loop_control:
+  label: "{{ item.name }}"
+```
+
+---
+
+## **72. Conditional Includes (`import_tasks` vs `include_tasks`)**
+
+**Scenario:** Include tasks dynamically based on conditions.
+
+**Answer:**
+
+```yaml
+- import_tasks: common.yml   # Static, loaded at playbook start
+- include_tasks: optional.yml
+  when: ansible_os_family == "RedHat"  # Dynamic
+```
+
+✅ **Explanation:**
+
+* `import_tasks` → Static, parsed once.
+* `include_tasks` → Dynamic, evaluated during runtime, supports `when`.
+
+---
+
+## **73. Advanced Error Handling**
+
+**Scenario:** Handle critical and non-critical task failures gracefully.
+
+**Answer:**
+
+```yaml
+- block:
+    - name: Restart web service
+      service:
+        name: nginx
+        state: restarted
+  rescue:
+    - debug: msg="Restart failed, alert admin!"
+  always:
+    - debug: msg="This runs regardless of success/failure."
+```
+
+✅ **Explanation:**
+
+* `block` → main tasks
+* `rescue` → run if block fails
+* `always` → run regardless
+* Combine with `ignore_errors` or `failed_when` for fine-grained control.
+
+---
+
+## **74. Ansible Tower / AWX Advanced Usage**
+
+**Scenario:** Manage credentials, schedules, and inventory in enterprise environments.
+
+**Answer:**
+
+* Use **Job Templates** to run playbooks.
+* Assign **inventories** and **credentials** per template.
+* Apply **RBAC** for user access.
+* Schedule recurring jobs for maintenance or deployments.
+
+✅ **Tip:** Tower integrates with Git, LDAP, and logging systems — perfect for enterprise automation.
+
+---
+
+## **75. Molecule Testing / CI/CD Integration**
+
+**Scenario:** Test roles locally and integrate with CI/CD pipelines.
+
+**Answer:**
+
+1. **Molecule test** for roles:
+
+```bash
+molecule init role web --driver-name docker
+molecule test
+```
+
+2. **CI/CD integration** (example with Jenkins):
+
+```groovy
+pipeline {
+  stages {
+    stage('Deploy') {
+      steps {
+        sh 'ansible-playbook -i inventory/prod site.yml'
+      }
+    }
+  }
+}
+```
+
+✅ **Explanation:**
+
+* Molecule verifies your role logic locally.
+* CI/CD integration ensures automated deployments and reduces human error.
+
+---
