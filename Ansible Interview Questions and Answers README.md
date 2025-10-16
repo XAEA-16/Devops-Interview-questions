@@ -638,3 +638,204 @@ sh 'ansible-playbook -i inventory/prod site.yml'
 ```bash
 ansible-playbook site.yml --check --diff
 ```
+
+Absolutely! Here's how we can **add the scenario-based questions in Mihir-style** to your existing document. I’ve kept it **concise, structured, and to-the-point**, with YAML snippets where needed:
+
+---
+
+# **Scenario-Based Ansible Questions (Professional Level)**
+
+## **61. Multi-Tier Application Deployment**
+
+**Scenario:** Deploy web, app, and database servers.
+**Answer:**
+
+* Use **roles** for each tier: `web`, `app`, `db`.
+* Directory structure:
+
+```
+roles/
+  web/tasks/main.yml
+  app/tasks/main.yml
+  db/tasks/main.yml
+inventory/production/hosts
+group_vars/
+  all.yml
+  web.yml
+  app.yml
+  db.yml
+```
+
+* `site.yml` includes roles:
+
+```yaml
+- hosts: web
+  roles: [web]
+
+- hosts: app
+  roles: [app]
+
+- hosts: db
+  roles: [db]
+```
+
+---
+
+## **62. Rolling Updates with Zero Downtime**
+
+**Scenario:** Update application without downtime.
+**Answer:**
+
+* Use **load balancer** to drain traffic.
+* Update servers in **batches (`serial`)**.
+* Health check after update.
+* Add back to load balancer.
+
+```yaml
+- hosts: web_servers
+  serial: 2
+  tasks:
+    - name: Drain traffic
+      uri: url="http://lb/api/drain/{{ inventory_hostname }}" method=POST
+
+    - name: Update web role
+      include_role: name=web
+
+    - name: Health check
+      uri: url="http://{{ inventory_hostname }}/health" status_code=200 retries=5 delay=10
+
+    - name: Restore traffic
+      uri: url="http://lb/api/add/{{ inventory_hostname }}" method=POST
+```
+
+---
+
+## **63. Handling Secret Management**
+
+**Scenario:** Manage passwords/API keys securely.
+**Answer:**
+
+* Use **Ansible Vault**.
+* Encrypt secrets: `ansible-vault encrypt secrets.yml`
+* Use in playbooks:
+
+```yaml
+- hosts: all
+  vars_files: [secrets.yml]
+  tasks:
+    - name: Use API key
+      uri:
+        url: "https://api.example.com/data"
+        headers: {Authorization: "Bearer {{ api_key }}"}
+```
+
+* Run playbook: `ansible-playbook playbook.yml --ask-vault-pass`
+
+---
+
+## **64. Idempotency Issues**
+
+**Scenario:** Task is not idempotent.
+**Answer:**
+
+* Identify task via `-v` flag.
+* Check current state before changes.
+* Example fix:
+
+```yaml
+# Non-idempotent
+- lineinfile: path=/etc/example.conf line="new configuration"
+
+# Idempotent
+- lineinfile: path=/etc/example.conf line="new configuration" state=present
+```
+
+---
+
+## **65. Dynamic Inventory**
+
+**Scenario:** Servers frequently added/removed.
+**Answer:**
+
+* Use **inventory plugins** (AWS, Azure, GCP).
+* Example AWS EC2:
+
+```yaml
+plugin: aws_ec2
+regions: [us-east-1]
+filters: {tag:Environment: production}
+```
+
+* List hosts: `ansible-inventory -i aws_ec2.yml --list`
+
+---
+
+## **66. Optimizing Playbook Performance**
+
+**Scenario:** Playbook execution is slow.
+**Answer:**
+
+* Increase **forks**: `ansible-playbook -f 10`
+* Use **async** for long tasks:
+
+```yaml
+- name: Long task
+  command: /path/to/script
+  async: 3600
+  poll: 0
+```
+
+* Limit hosts: `--limit web_servers`
+* Delegate to localhost if needed.
+
+---
+
+## **67. Handling Legacy Scripts**
+
+**Scenario:** Migrate shell scripts to Ansible.
+**Answer:**
+
+* Break scripts into discrete tasks.
+* Use **Ansible modules** instead of shell commands.
+* Example:
+
+```bash
+# Shell
+apt-get update
+apt-get install -y nginx
+```
+
+```yaml
+# Ansible
+- apt: update_cache=yes
+- apt: name=nginx state=present
+```
+
+---
+
+## **68. Managing Multiple Environments**
+
+**Scenario:** Handle dev, staging, prod environments.
+**Answer:**
+
+* Use separate **inventory files** and **group_vars**.
+
+```
+inventories/
+  development/hosts
+  staging/hosts
+  production/hosts
+group_vars/all.yml
+```
+
+* Run playbook with specific environment:
+
+```bash
+ansible-playbook -i inventories/staging/hosts site.yml
+```
+
+---
+
+
+
+
