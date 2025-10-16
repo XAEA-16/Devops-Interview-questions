@@ -1,159 +1,258 @@
+---
+
+# Git & Source Code Management Questions Every DevOps Professional Should Know**
+---
+
 ### **1. What is Source Code Management (SCM)?**
-SCM is the process of **tracking and controlling every change** to code. The concept is to maintain a complete, reliable **history** of the project, allowing for collaboration and safe rollbacks.
+
+SCM is the process of **tracking and controlling every change** to code. It maintains a complete, reliable **history** of a project, enabling collaboration, audits, and safe rollbacks.
 
 ---
 
 ### **2. Advantages of Source Code Management**
-The core benefits are enabling **team collaboration**, providing a full **audit trail/history**, facilitating **parallel development**, and ensuring system **stability** by allowing rollbacks.
+
+SCM provides:
+
+* **Team collaboration**
+* **Audit trail/history** for all changes
+* **Parallel development** without conflicts
+* Ensures **system stability** with easy rollbacks
 
 ---
 
 ### **3. Popular Source Code Management Tools**
-The standard is **Git** (a distributed system), used with hosting services like **GitHub**, **GitLab**, and **Bitbucket**. Older, centralized systems like **SVN** are also in use.
+
+* **Git:** Distributed Version Control System (DVCS)
+* Hosting Platforms: **GitHub, GitLab, Bitbucket**
+* Older centralized systems: **SVN**
 
 ---
 
 ### **4. What is Git and GitHub?**
-**Git** is the **Distributed Version Control System (DVCS)** software that handles local change tracking. **GitHub** is the **remote platform** where Git repositories are hosted, enabling centralized access and team interaction.
+
+* **Git:** Tracks code changes locally, distributed across developers
+* **GitHub:** Remote hosting platform for Git repos, enabling centralized access and team collaboration
 
 ---
 
 ### **5. Advantages of Git**
-Git's main power comes from being **distributed** (full history on every machine), which makes it incredibly **fast**, highly **resilient**, and supportive of **offline work**.
+
+* **Distributed:** Full history on every machine
+* **Fast** and offline-capable
+* **Resilient:** Survives server failures
+* Supports **branching and merging** efficiently
 
 ---
 
 ### **6. Stages in Git**
-Files move from the **Working Directory** (editing) to the **Staging Area** (preparing the commit) to the **Repository** (permanent storage of the snapshot).
+
+* **Working Directory:** Where files are edited
+* **Staging Area:** Prepares changes for commit
+* **Repository:** Permanent snapshot storage
 
 ---
 
 ### **7. Common Branching Strategy**
-We use **Feature Branching**: A strategy where every new feature or fix is developed in an **isolated branch** to protect the main codebase (`main`/`develop`) until the work is complete and reviewed.
+
+* **Feature Branching:** Develop new features or fixes in isolated branches to protect main codebase (`main`/`develop`) until fully tested and reviewed
 
 ---
 
 ### **8. Types of Repositories**
-The **Local Repository** is your private copy of the project history on your machine. The **Remote Repository** is the shared, central copy hosted online (e.g., GitHub) that team members push and pull from.
+
+* **Local Repository:** Your private copy on your machine
+* **Remote Repository:** Shared central repo hosted online (GitHub, GitLab, Bitbucket)
 
 ---
 
 ### **9. What is a Snapshot in Git?**
-A snapshot is the core concept of a Git **commit**. Instead of just storing differences, a commit records the **full state of all project files** at that exact moment in time.
+
+A snapshot is a **commit recording the full state** of all files at a point in time, rather than just the differences.
 
 ---
 
 ### **10. What is Git Merge?**
-It's the operation that **integrates changes** from one line of development (a branch) into another, officially combining their histories and creating a new **merge commit**.
+
+Integrates changes from one branch into another, creating a **merge commit** that combines histories.
 
 ---
 
 ### **11. What is Git Stash?**
-The concept is a **temporary holding spot** for unfinished work. It saves changes locally so you can switch branches or perform an operation without committing messy, incomplete code.
+
+A **temporary storage** for unfinished work. Saves local changes so you can switch branches or perform operations without committing incomplete code.
 
 ---
 
 ### **12. What is Git Reset?**
-The command **rewrites history** by moving the branch pointer (**HEAD**) to a previous commit. It's used to *un-do* local commits before they are shared.
+
+Moves the **HEAD pointer** to a previous commit. Useful for undoing local commits **before pushing**.
+
+```bash
+git reset --hard <commit_id>
+```
 
 ---
 
 ### **13. What is Git Revert?**
-It's a **safe undo** command. It doesn't rewrite history but instead **creates a brand new commit** that precisely negates the changes of a previous one, preserving the original commit history.
+
+Creates a **new commit** that undoes a previous commit without rewriting history — a safe way to reverse changes.
 
 ---
 
 ### **14. Difference Between Git Pull, Clone, and Fetch**
-**Clone** is the one-time download of the entire remote repo. **Fetch** downloads remote data. **Pull** is the combined action: fetching the data and **immediately merging** it into the current branch.
+
+* **Clone:** One-time download of entire remote repo
+* **Fetch:** Downloads remote changes without merging
+* **Pull:** Fetch + merge into current branch
 
 ---
 
 ### **15. Difference Between Git Merge and Git Rebase**
-**Merge** preserves the full commit graph (non-linear history). **Rebase** rewrites history by moving commits to the tip of another branch, resulting in a **cleaner, single-line (linear) history**.
+
+* **Merge:** Preserves full commit graph (non-linear)
+* **Rebase:** Moves commits onto another branch, creating **linear history**
 
 ---
 
 ### **16. What is Git Bisect?**
-A diagnostic tool that uses a **binary search algorithm** to cut the search space in half repeatedly, efficiently isolating the **single commit that introduced a regression/bug**.
+
+A **binary search** to locate a commit that introduced a bug, efficiently isolating regressions.
 
 ---
 
 ### **17. What is Git Squash?**
-The process of **condensing multiple commits** (often small "WIP" commits) into one single, meaningful commit. The concept is to keep the project history clean for future readers.
+
+Combines multiple small commits into **one meaningful commit** to keep project history clean.
 
 ---
 
 ### **18. What are Git Hooks?**
-These are **executable scripts** that run automatically when specific Git events occur (e.g., pre-commit, post-push). They are used to **enforce policy** or run automation (like linting/tests).
+
+**Executable scripts** that run on Git events (pre-commit, post-push) for automation or enforcing policies.
 
 ---
 
 ### **19. What is Git Cherry-pick?**
-It allows for **selective commit transfer**. The concept is to apply the changes from **one specific commit** onto a different, usually unrelated, branch.
+
+Apply a **specific commit** from one branch onto another unrelated branch.
 
 ---
 
 ### **20. Difference Between Git and SVN**
-**Git** is **Distributed** (every user has the full repo history), which makes it fast and resilient. **SVN** is **Centralized** (requires constant server connection), which makes its branching heavier.
+
+| Feature   | Git         | SVN         |
+| --------- | ----------- | ----------- |
+| Model     | Distributed | Centralized |
+| Speed     | Fast        | Slower      |
+| Offline   | Yes         | No          |
+| Branching | Lightweight | Heavy       |
 
 ---
 
 ### **21. Submodules and Modules in Git**
-A **Submodule** allows a Git repository to **contain another independent Git repository** as a sub-directory, managing external dependencies without merging their histories.
+
+* **Submodule:** Git repository within another, managing external dependencies
+* **Module:** Standard code structure in a repo
 
 ---
 
 ### **22. Difference Between Git Branch and Git Tag**
-A **Branch** is a **movable pointer** to the latest commit in a development line. A **Tag** is a **fixed pointer** to a specific commit, typically used to mark stable release points.
+
+* **Branch:** Movable pointer to latest commit
+* **Tag:** Fixed pointer marking a release
 
 ---
 
 ### **23. Merge Specific Commit in a Branch**
-Use **`git cherry-pick <commit_id>`**. The concept is to apply the specific changes as a new commit on the target branch.
+
+```bash
+git cherry-pick <commit_id>
+```
+
+Applies the changes as a **new commit** on the target branch.
 
 ---
 
 ### **24. Remote and Local Repositories in Pipeline**
-Developers commit to the **Local repo**, which syncs to the **Remote repo**. The remote repo is the **source of truth** that CI/CD pipelines monitor and pull code from for testing and deployment.
+
+* Developers commit to **local repo**
+* CI/CD pipelines pull from **remote repo**, the **source of truth** for builds and deployments
 
 ---
 
 ### **25. How PRs (Pull Requests) Work**
-A PR is a formal **proposal to integrate** a feature branch. The core concept is to initiate a **code review, testing, and collaboration** process *before* the merge is approved.
+
+PR is a formal **proposal to merge** a feature branch. Initiates **code review, testing, and collaboration** before integration.
 
 ---
 
 ### **26. How to Resolve Conflicts**
-The process involves **manually editing** the file to choose the correct changes, then using **`git add`** to tell Git the conflict markers are fixed, and finally committing the merge resolution.
+
+* Manually edit conflicting files
+* Use `git add` to mark as resolved
+* Commit the resolution
 
 ---
 
 ### **27. Do You Know Git Rebase?**
-Yes. I understand its power to **rewrite history** by logically transplanting commits onto a new base, which is used to create a **clean, linear history** *before* sharing or merging.
+
+Yes. Rebase **rewrites history** by moving commits onto a new base, creating a **linear and clean history** before merging.
 
 ---
 
 ### **28. What Branching Strategy Do You Use?**
-We use **Feature Branching**—the concept being **isolation**. New work is kept off the shared branches until it is fully reviewed, tested, and ready for integration.
+
+* **Feature Branching:** Isolates new work
+* Keeps shared branches (`main`/`develop`) **stable and reliable**
 
 ---
 
 ### **29. How to Avoid Pushing Sensitive Files**
-The core defense is using the **`.gitignore`** file to stop tracking. For secrets, we enforce storing them in **environment variables** or secret managers, *never* directly in the codebase.
+
+* Use **`.gitignore`** to exclude them
+* Store secrets in **environment variables** or **secret managers**
 
 ---
 
 ### **30. Clone a Particular Branch with Last Commit ID**
-I use `git clone -b <branch> --single-branch <repo_url>`. This clones **only the necessary history** for that branch. **`git log -1`** then shows the ID.
+
+```bash
+git clone -b <branch> --single-branch <repo_url>
+git log -1
+```
+
+Clones only the branch and shows the latest commit ID.
 
 ---
 
 ### **31. Make a Teammate Track a Renamed File**
-Git tracks renames automatically via metadata. The teammate simply needs to **`git pull`** to update, and Git correctly applies the rename to their local working directory.
+
+Git tracks renames automatically. Teammates just run:
+
+```bash
+git pull
+```
+
+Changes are applied, including file renames.
 
 ---
 
 ### **32. Check Last 6 Months of Commits**
-I use **`git log --since="6 months ago"`**. The concept here is using Git's powerful filtering capability based on time stamps.
 
-***
+```bash
+git log --since="6 months ago"
+```
+
+Filters commit history based on timestamps, useful for reviews and audits.
+
+---
+
+✅ **Conclusion:**
+These **32 Git & SCM questions** cover core concepts, commands, branching strategies, and practical DevOps workflows.
+Mastering these answers ensures confidence in interviews and **real-world DevOps collaboration**.
+
+---
+
+If you want, I can **combine this Git guide with the previous Ansible guide** into **one complete, 100+ question DevOps interview-ready document** in the **same Mihir Popat style** — fully formatted, with bold highlights, commands, and headings.
+
+Do you want me to do that?
