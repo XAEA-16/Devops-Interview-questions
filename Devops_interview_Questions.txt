@@ -334,51 +334,66 @@
 ***
 
 ### Ansible
-1. Components of Ansible
-2. Ansible Roles
-3. Ansible Galaxy
-4. What is an ad-hoc command
-5. What is "host" used for and what is "task"; can we write something before "host"
-6. Can Ansible be installed on Windows
-7. Command to check the syntax of a playbook file
-8. Command to run a playbook file
-9. Difference between Ansible and Terraform
-10. Why is Ansible a preferred configuration management tool
-11. Main components of Ansible
-12. Command to run a playbook
-13. Have you worked on custom modules? Explain
-14. Name some modules you have worked on
-15. Can you write a playbook (example)
-16. Requirements to install Ansible
+1. What is Ansible, and what is its purpose?
+2. Main components of Ansible
+3. What language do you use in Ansible?
+4. Requirements to install Ansible
+5. Can Ansible be installed on Windows
+6. What are Ansible Facts
+7. Fetching server details using Ansible
+8. What is idempotency in Ansible? How do you handle it?
+9. What is "handlers" in Ansible
+10. How to use handlers in Ansible and how are they triggered?
+11. What are Variables in Ansible, and how are they used?
+12. How do you use variables and templates in Ansible?
+13. What is Ansible Pull?
+14. Command to run a playbook file
+15. Command to check the syntax of a playbook file
+16. What is an ad-hoc command
 17. Have you worked on Ansible ad-hoc commands
-18. Fetching server details using Ansible
-19. What are Ansible Facts
-20. What is "handlers" in Ansible
-21. What is loop features in Ansible
-22. Skipping CentOS tasks
-23. Directory structure of Ansible roles
-24. What is Ansible Tower
-25. How to encrypt in Ansible
-26. How to integrate Ansible with Terraform
-27. Command to run an Ansible playbook with a specific inventory file
-28. Example playbook to check service status
-29. Setting up Jump Host in Ansible to access servers without direct access
-30. How to optimize the execution of an Ansible playbook for a large number of servers
-31. error handling in ansible
-32. What is Ansible Vault?
-33. What are Ansible Roles?
-34. Why are you using Ansible? What have you done with it?
-35. How do you manage dynamic inventory in AWS using Ansible?
-36. Can you show a sample playbook to install Nginx?
-37. How do you restart Nginx if config is changed?
-38. How to use handlers in Ansible and how are they triggered?
-39. What is idempotency in Ansible? How do you handle it?
-40. How to run only a specific task in a long Ansible playbook?
-41. How do you use Ansible Vault to manage secrets?
-42. What is Ansible, and what is its purpose?
-43. What language do you use in Ansible?
-44. You have an Ansible playbook that is idempotent, but a specific task is consistently reporting "changed" even when no changes are made. How would you troubleshoot this?
-
+18. What is "hosts" used for and what is "tasks"; can we write something before "hosts"
+19. What is loop features in Ansible
+20. How do you use conditionals (when) in Ansible?
+21. Skipping CentOS tasks
+22. How to run only a specific task in a long Ansible playbook?
+23. Name some modules you have worked on
+24. Have you worked on custom modules? Explain
+25. What are Ansible Plugins?
+26. How do you write a custom inventory plugin?
+27. What are Ansible Roles?
+28. Directory structure of Ansible roles
+29. Ansible Galaxy
+30. What are Ansible Collections?
+31. How do you use Ansible Collections in a playbook?
+32. How do you use tags in Ansible?
+33. How to encrypt in Ansible
+34. What is Ansible Vault?
+35. How do you use Ansible Vault to manage secrets?
+36. How do you manage configuration drift with Ansible?
+37. Error handling in ansible
+38. You have an Ansible playbook that is idempotent, but a specific task is consistently reporting "changed" even when no changes are made. How would you troubleshoot this?
+39. What is Ansible Lint, and why is it useful?
+40. Can you write a playbook (example)
+41. Can you show a sample playbook to install Nginx?
+42. Example playbook to check service status
+43. How do you restart Nginx if config is changed?
+44. How do you use Ansible for application deployment?
+45. How do you use Ansible for OS hardening?
+46. How do you use Ansible with Docker?
+47. Setting up Jump Host in Ansible to access servers without direct access
+48. How to optimize the execution of an Ansible playbook for a large number of servers
+49. What are Ansible Execution Strategies (e.g., linear, free)?
+50. How do you manage dynamic inventory in AWS using Ansible?
+51. Command to run an Ansible playbook with a specific inventory file
+52. How to integrate Ansible with Terraform
+53. How do you use Ansible with CI/CD pipelines?
+54. What is Ansible Tower
+55. Difference between Ansible and Terraform
+56. How does Ansible differ from Chef and Puppet?
+57. Why is Ansible a preferred configuration management tool
+58. What are some best practices for using Ansible in production?
+59. Why are you using Ansible? What have you done with it?
+60. How do you test Ansible playbooks?
 ***
 
 ### Terraform
@@ -662,3 +677,4 @@
 1. Have you written any Python scripts to automate tasks? What do they do?
 2. Write a palindrome program in Python.
 3. Explain the palindrome code.
+
