@@ -2,8 +2,6 @@ ANSIBLE QUESTIONS AND ANSWERS
 ---
 
 ## **1. What is Ansible, and what is its purpose?**
-
-
 Ansible is an open-source automation tool used for configuration management, application deployment, and IT orchestration. It uses a simple, human-readable YAML language for defining tasks and doesn’t require any agent installation on managed nodes. Ansible’s lightweight design, ease of use, and ability to handle complex tasks make it ideal for DevOps automation, enabling efficient management of infrastructure at scale
 ---
 
@@ -17,11 +15,11 @@ Inventory: A file listing all the hosts that Ansible manages, categorized by gro
 Modules: Scripts run by Ansible to perform tasks on managed nodes.
 Playbooks: YAML files where automation tasks are defined in a structured format.
 Plugins: Extend Ansible’s functionality for connection management, caching, and logging.
-These components work together to automate tasks across multiple nodes.”
+These components work together to automate tasks across multiple nodes.
 
 
 ---
-How does Ansible differ from other automation tools like Chef and Puppet?
+## ** extra question How does Ansible differ from other automation tools like Chef and Puppet?
 
 Ansible is one of several popular automation tools, and interviewers may ask about its unique features.
 
@@ -32,14 +30,14 @@ Push-based model: Ansible uses a push model, while Chef and Puppet are typically
 Configuration language: Ansible uses YAML, which is human-readable, while Chef uses Ruby, and Puppet uses its own DSL.
 Learning curve: Ansible’s simplicity and YAML syntax make it beginner-friendly, while Chef and Puppet may require more setup and specialized knowledge.”
 
-What is the purpose of Ansible Galaxy?
+## ** extra question What is the purpose of Ansible Galaxy?
 
 This question checks your knowledge of reusable content in Ansible.
 
 Answer: “Ansible Galaxy is a public repository of reusable Ansible content, such as roles and collections, which can be used to streamline and accelerate development. It allows users to download, share, and publish roles created by others, making it easy to leverage community-contributed modules. Ansible Galaxy simplifies complex configurations, allowing users to integrate proven roles for tasks like database setup, web server configuration, and more.
 
 
-What are some best practices for using Ansible in a production environment?
+## ** extra question What are some best practices for using Ansible in a production environment?
 
 This question assesses your understanding of Ansible’s optimization and security in real-world applications.
 
