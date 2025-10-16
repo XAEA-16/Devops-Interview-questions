@@ -638,7 +638,3 @@ sh 'ansible-playbook -i inventory/prod site.yml'
 ```bash
 ansible-playbook site.yml --check --diff
 ```
-
-If you want, I can also **format this into a clean LinkedIn-post style with headings, bold highlights, and snippets** exactly like Mihir Popat’s article so it’s ready to publish or share.
-
-Do you want me to do that?
