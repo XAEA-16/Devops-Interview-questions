@@ -1,96 +1,77 @@
-ANSIBLE QUESTIONS AND ANSWERS
 ---
-before going through the below questions  open this link and go though once https://mihirpopat.medium.com/top-10-ansible-interview-questions-and-answers-to-ace-your-devops-interview-2a95c3949e13
 
-## **1. What is Ansible, and what is its purpose?**
-
-Ansible is an open-source automation tool for **configuration management, application deployment, and orchestration**.
-
-* Automates repetitive IT tasks across servers.
-* Agentless — uses SSH and Python.
-* Ensures consistency, speed, and reliability across environments.
+# ANSIBLE — 75 Questions & Answers (complete & interview-ready)
 
 ---
 
-## **2. Main components of Ansible**
+### 1. What is Ansible, and what is its purpose?
 
-* **Inventory:** List of target hosts or groups.
-* **Playbooks:** YAML files defining automation tasks.
-* **Modules:** Scripts for specific actions (copy, yum, service, etc.).
-* **Plugins:** Extend Ansible’s core features (connection, callback).
-* **Facts:** System details collected from hosts.
-* **Roles:** Structured, reusable playbooks.
+**Answer:** Ansible is an open-source automation tool for configuration management, application deployment, and orchestration. It’s agentless, uses SSH (or WinRM for Windows), is written in Python, and uses human-readable YAML playbooks to ensure consistency and repeatability across environments.
 
 ---
 
-## **3. What language do you use in Ansible?**
+### 2. What are the main components of Ansible?
 
-Ansible uses **YAML (Yet Another Markup Language)** for playbooks — human-readable, simple, and indentation-based.
-
----
-
-## **4. Requirements to install Ansible**
-
-* **Control Node:** Linux/macOS, Python 3.x
-* **Managed Nodes:** SSH access, Python 2.7+ or 3.x
-  No agent is needed on managed nodes.
+**Answer:** Inventory (hosts/groups), Playbooks (YAML task files), Modules (units of work like `yum`, `copy`), Plugins (connection, callback, lookup, etc.), Facts (system info collected from hosts), and Roles (structured reusable playbooks).
 
 ---
 
-## **5. Can Ansible be installed on Windows?**
+### 3. What language do you use in Ansible?
 
-* Direct installation on Windows is not possible.
-* Use **WSL (Windows Subsystem for Linux)** or a Linux VM to control hosts.
-
----
-
-## **6. What are Ansible Facts?**
-
-Facts are system properties automatically gathered from managed nodes.
-
-* Include hostname, OS, IP, memory, CPU, etc.
-* Gathered using the `setup` module:
-
-```bash
-ansible all -m setup
-```
+**Answer:** Playbooks are written in **YAML**. Templates use **Jinja2** syntax. Ansible itself is implemented in **Python**.
 
 ---
 
-## **7. Fetching server details using Ansible**
+### 4. What are the requirements to install Ansible?
 
-Use `setup` module to fetch facts:
+**Answer:** Control node: Linux/macOS with Python 3.x. Managed nodes: SSH access (or WinRM for Windows) and Python 2.7+/3.x installed (many modern systems have Python 3). No agent required on managed nodes.
+
+---
+
+### 5. Can Ansible be installed on Windows?
+
+**Answer:** There’s no native Windows control-node install. Use **WSL** (Windows Subsystem for Linux), Cygwin, or a Linux VM as the control node. Managed Windows hosts are supported via **WinRM**.
+
+---
+
+### 6. What are Ansible Facts?
+
+**Answer:** Facts are automatically gathered host variables (OS, IP, memory, CPU, distribution, etc.). Collected with the `setup` module. Accessible as `ansible_facts` or shorthand `ansible_<fact>`.
+
+---
+
+### 7. How do you fetch server details using Ansible?
+
+**Answer:** Use the `setup` module:
 
 ```bash
 ansible all -m setup
 ansible all -m setup -a 'filter=ansible_hostname'
 ```
 
----
-
-## **8. What is idempotency in Ansible? How do you handle it?**
-
-Idempotency ensures running a playbook multiple times **won’t change the system** if it’s already in the desired state.
-
-* Built-in modules are usually idempotent.
-* Custom scripts should include checks before making changes.
+You can also use `gather_facts: yes/no` in playbooks.
 
 ---
 
-## **9. What is "handlers" in Ansible?**
+### 8. What is idempotency in Ansible? How do you handle it?
 
-Handlers are tasks triggered **only when notified** by other tasks.
-
-* Commonly used for restarting services after config changes.
-* Defined under `handlers:` in playbooks.
+**Answer:** Idempotency means running tasks/playbooks multiple times leaves the system in the same desired state (no unintended changes). Use Ansible’s idempotent modules (e.g., `apt`, `yum`, `lineinfile`), add state checks, and avoid raw shell commands unless necessary with proper guards.
 
 ---
 
-## **10. How to use handlers in Ansible and how are they triggered?**
+### 9. What are handlers in Ansible?
+
+**Answer:** Handlers are special tasks that run only when notified (i.e., when another task reports `changed`). Commonly used for service restarts after config changes. Defined under `handlers:` and referenced via `notify:`.
+
+---
+
+### 10. How do you use handlers in Ansible and how are they triggered?
+
+**Answer:** Example:
 
 ```yaml
 tasks:
-  - name: Update Nginx config
+  - name: Update nginx config
     copy:
       src: nginx.conf
       dest: /etc/nginx/nginx.conf
@@ -103,26 +84,29 @@ handlers:
       state: restarted
 ```
 
-Handlers run only if the notifying task reports a change.
+Handler runs at the end of the play for hosts where the notifying task returned `changed: true`.
 
 ---
 
-## **11. What are Variables in Ansible, and how are they used?**
+### 11. What are variables in Ansible, and how are they used?
 
-Variables store dynamic values and make playbooks reusable.
+**Answer:** Variables store dynamic values used in playbooks, templates, inventories, `group_vars` and `host_vars`. Example:
 
 ```yaml
 vars:
   app_port: 8080
+
 tasks:
-  - debug: msg="The application runs on port {{ app_port }}"
+  - debug: msg="App runs on {{ app_port }}"
 ```
+
+There is a variable precedence order (defaults < vars_files < inventory < play vars < extra vars).
 
 ---
 
-## **12. How do you use variables and templates in Ansible?**
+### 12. How do you use variables and templates in Ansible?
 
-Templates use **Jinja2 syntax** to insert variables into files.
+**Answer:** Use Jinja2 templates (`.j2`) and `template:` module. Example:
 
 ```yaml
 - template:
@@ -130,11 +114,13 @@ Templates use **Jinja2 syntax** to insert variables into files.
     dest: /etc/nginx/nginx.conf
 ```
 
+Template contains `{{ variable }}` placeholders.
+
 ---
 
-## **13. What is Ansible Pull?**
+### 13. What is Ansible Pull?
 
-Allows nodes to **pull configuration from Git** instead of being pushed from the control node.
+**Answer:** `ansible-pull` makes a node pull playbooks from a VCS (e.g., Git) and apply them locally — useful for a pull-based approach. Example:
 
 ```bash
 ansible-pull -U https://github.com/repo.git playbook.yml
@@ -142,7 +128,9 @@ ansible-pull -U https://github.com/repo.git playbook.yml
 
 ---
 
-## **14. Command to run a playbook file**
+### 14. What is the command to run a playbook?
+
+**Answer:**
 
 ```bash
 ansible-playbook playbook.yml
@@ -151,7 +139,9 @@ ansible-playbook -i inventory.ini playbook.yml
 
 ---
 
-## **15. Command to check the syntax of a playbook file**
+### 15. How do you check the syntax of a playbook file?
+
+**Answer:**
 
 ```bash
 ansible-playbook --syntax-check playbook.yml
@@ -159,9 +149,9 @@ ansible-playbook --syntax-check playbook.yml
 
 ---
 
-## **16. What is an ad-hoc command?**
+### 16. What is an ad-hoc command?
 
-One-liner commands for quick tasks without a playbook.
+**Answer:** One-line commands to run a module/task without a playbook. Example:
 
 ```bash
 ansible all -m ping
@@ -170,29 +160,24 @@ ansible webservers -m shell -a "uptime"
 
 ---
 
-## **17. Have you worked on Ansible ad-hoc commands?**
+### 17. Have you worked on Ansible ad-hoc commands? Give examples.
 
-Yes — used for:
-
-* Restarting services: `ansible all -m service -a "name=nginx state=restarted"`
-* Checking uptime or disk usage: `ansible all -a "df -h"`
+**Answer:** Yes — quick admin tasks such as restarting services (`ansible all -m service -a "name=nginx state=restarted"`), checking disk usage (`ansible all -a "df -h"`), or gathering package info.
 
 ---
 
-## **18. What is "hosts" used for and what is "tasks"; can we write something before "hosts"?**
+### 18. What is `hosts` used for and what are `tasks`; can we write something before `hosts`?
 
-* **hosts:** Target server/group
-* **tasks:** List of actions
-* **Pre-tasks** or **vars** can appear before `hosts`.
+**Answer:** `hosts:` defines the target group or hosts for a play. `tasks:` is the list of actions to run on those hosts. You can have `vars:`, `pre_tasks:`, `post_tasks:`, `roles:` before `tasks` within a play. `hosts` must be present in each play.
 
 ---
 
-## **19. What is loop feature in Ansible?**
+### 19. What is the loop feature in Ansible?
 
-Loops repeat tasks for multiple items.
+**Answer:** `loop` repeats a task for multiple items. Example:
 
 ```yaml
-- name: Create multiple users
+- name: Create users
   user:
     name: "{{ item }}"
     state: present
@@ -202,32 +187,40 @@ Loops repeat tasks for multiple items.
     - prod
 ```
 
+There are also `with_items`, `loop_control`, and looping over dictionaries/lists of dicts.
+
 ---
 
-## **20. How do you use conditionals (`when`) in Ansible?**
+### 20. How do you use conditionals (`when`) in Ansible?
+
+**Answer:** `when:` controls task execution. Example:
 
 ```yaml
-- name: Install Apache only on CentOS
+- name: Install Apache on CentOS
   yum:
     name: httpd
     state: present
-  when: ansible_facts['os_family'] == "RedHat"
+  when: ansible_facts['os_family'] == 'RedHat'
 ```
 
 ---
 
-## **21. Skipping CentOS tasks**
+### 21. How do you skip CentOS-specific tasks?
+
+**Answer:** Use a conditional:
 
 ```yaml
 - debug: msg="Not CentOS"
-  when: ansible_facts['os_family'] != "RedHat"
+  when: ansible_facts['os_family'] != 'RedHat'
 ```
+
+Or use `tags` and `--skip-tags` to avoid groups of tasks.
 
 ---
 
-## **22. How to run only a specific task in a long playbook?**
+### 22. How do you run only a specific task in a long playbook?
 
-Use **tags**:
+**Answer:** Tag the task and run with `--tags`:
 
 ```yaml
 - name: Install Apache
@@ -235,90 +228,73 @@ Use **tags**:
   tags: install
 ```
 
-Run it with: `ansible-playbook site.yml --tags install`
+Run: `ansible-playbook site.yml --tags install`
 
 ---
 
-## **23. Name some modules you have worked on**
+### 23. Name some commonly used Ansible modules.
 
-* `yum` / `apt`
-* `service` / `systemd`
-* `copy` / `template`
-* `user` / `group`
-* `file` / `lineinfile`
-* `ec2` / `s3`
+**Answer:** `yum`, `apt`, `service`, `systemd`, `copy`, `template`, `user`, `group`, `file`, `lineinfile`, `command`, `shell`, `uri`, `ec2`, `s3`, `docker_image`, `docker_container`.
 
 ---
 
-## **24. Have you worked on custom modules? Explain**
+### 24. Have you worked on custom modules? Explain.
 
-Yes — custom modules are written in Python under `library/`.
-
-* Use `AnsibleModule` for argument parsing.
-* Example: Validate application configs or fetch API data.
+**Answer:** Yes — custom modules are Python scripts placed under `library/`. Use `from ansible.module_utils.basic import AnsibleModule` to parse args and return `exit_json()`/`fail_json()`. Useful when built-in modules don’t cover a specific API or business logic.
 
 ---
 
-## **25. What are Ansible Plugins?**
+### 25. What are Ansible plugins?
 
-Plugins extend functionality:
-
-* Action, Callback, Lookup, Connection.
-* Customize execution, output, or data retrieval.
+**Answer:** Plugins extend Ansible: connection plugins, callback plugins, lookup, filter, inventory, and action plugins. They let you customize execution, output formatting, data retrieval, and more.
 
 ---
 
-## **26. How do you write a custom inventory plugin?**
+### 26. How do you write a custom inventory plugin?
 
-* Written in Python under `plugins/inventory/`.
-* Define a `parse()` method returning JSON with hosts and groups.
-* Enable in `ansible.cfg`.
+**Answer:** Write a Python plugin under `plugins/inventory/` implementing `parse()` and returning host/group JSON. Configure `ansible.cfg` to enable it. Use official Inventory Plugin API and follow plugin schema and docs.
 
 ---
 
-## **27. What are Ansible Roles?**
+### 27. What are Ansible Roles?
 
-Roles are **reusable, structured playbooks** separating tasks, handlers, variables, templates, and files.
+**Answer:** Roles structure playbooks into standardized directories (tasks, handlers, vars, defaults, templates, files, meta). They enable reuse and shareability (e.g., via Ansible Galaxy).
 
 ---
 
-## **28. Directory structure of Ansible roles**
+### 28. Directory structure of Ansible roles
+
+**Answer:** Typical:
 
 ```
 roles/
   webserver/
-    tasks/
-    handlers/
+    tasks/main.yml
+    handlers/main.yml
     templates/
     files/
-    vars/
-    defaults/
-    meta/
+    vars/main.yml
+    defaults/main.yml
+    meta/main.yml
 ```
 
 ---
 
-## **29. Ansible Galaxy**
+### 29. What is Ansible Galaxy?
 
-A repository for reusable roles and collections:
-
-```bash
-ansible-galaxy install geerlingguy.nginx
-```
+**Answer:** A public repository for reusable roles and collections. Install with `ansible-galaxy install <role>` and publish your roles there.
 
 ---
 
-## **30. What are Ansible Collections?**
+### 30. What are Ansible Collections?
 
-Bundles of modules, roles, and plugins — installed via:
-
-```bash
-ansible-galaxy collection install amazon.aws
-```
+**Answer:** Collections bundle roles, modules, plugins, and playbooks into a distributable unit. Install via `ansible-galaxy collection install <namespace.collection>`.
 
 ---
 
-## **31. How do you use Ansible Collections in a playbook?**
+### 31. How do you use Ansible Collections in a playbook?
+
+**Answer:** Reference collection-qualified modules. Example:
 
 ```yaml
 - hosts: all
@@ -330,66 +306,47 @@ ansible-galaxy collection install amazon.aws
 
 ---
 
-## **32. How do you use tags in Ansible?**
+### 32. How do you use tags in Ansible?
 
-```yaml
-tasks:
-  - name: Install Apache
-    yum: name=httpd state=present
-    tags: install
-```
-
-Run with: `--tags install`
+**Answer:** Add `tags:` to tasks/plays and run with `--tags`/`--skip-tags`. Useful to run subsets (e.g., `--tags install,configure`).
 
 ---
 
-## **33. How to encrypt in Ansible**
+### 33. How do you encrypt data in Ansible?
 
-Use **Ansible Vault**:
+**Answer:** Use **Ansible Vault** to encrypt files:
 
 ```bash
 ansible-vault encrypt secrets.yml
-ansible-vault decrypt secrets.yml
 ansible-vault edit secrets.yml
+ansible-playbook site.yml --ask-vault-pass
 ```
 
----
-
-## **34. What is Ansible Vault?**
-
-Encrypts sensitive data (passwords, keys) in playbooks or vars for secure automation.
+Or use Vault ID and password files for automation.
 
 ---
 
-## **35. How do you use Ansible Vault to manage secrets?**
+### 34. What is Ansible Vault?
 
-```yaml
-vars_files:
-  - vault.yml
-```
-
-Run playbook:
-
-```bash
-ansible-playbook playbook.yml --ask-vault-pass
-```
+**Answer:** A feature to encrypt sensitive data (passwords, keys) used in playbooks/vars so you can store secrets in VCS safely.
 
 ---
 
-## **36. How do you manage configuration drift with Ansible?**
+### 35. How do you use Ansible Vault to manage secrets in playbooks?
 
-* Re-run playbooks periodically
-* Idempotency ensures systems stay in the desired state
-* Corrects drift automatically.
+**Answer:** Put secrets in an encrypted file (e.g., `vault.yml`), include it with `vars_files:` and supply the vault password or `--vault-id` when running playbooks.
 
 ---
 
-## **37. Error handling in Ansible**
+### 36. How do you manage configuration drift with Ansible?
 
-* `ignore_errors`
-* `failed_when`
-* `block/rescue/always`
-  **Example:**
+**Answer:** Re-run playbooks periodically (cron, Jenkins, Tower), use idempotent tasks, and use Ansible Tower/AWX scheduling to enforce desired state and correct drift.
+
+---
+
+### 37. Error handling in Ansible — options and example
+
+**Answer:** Use `ignore_errors`, `failed_when`, `register`, `when`, and structured `block`/`rescue`/`always`. Example:
 
 ```yaml
 - block:
@@ -400,622 +357,373 @@ ansible-playbook playbook.yml --ask-vault-pass
 
 ---
 
-## **38. Task reporting “changed” every time — troubleshooting**
+### 38. Task reporting `changed` every time — troubleshooting
 
-* Check module idempotency
-* Use `changed_when: false` if needed
-* Use `-vvv` for verbose debug
+**Answer:** Check if the module is non-idempotent or using `shell/command`. Use `changed_when: false` or adjust task to perform checks (e.g., check file content before writing) to make it idempotent.
 
 ---
 
-## **39. What is Ansible Lint, and why is it useful?**
+### 39. What is Ansible Lint, and why is it useful?
 
-Checks playbooks for best practices, syntax errors, and maintainability:
-
-```bash
-ansible-lint playbook.yml
-```
+**Answer:** `ansible-lint` checks playbooks and roles for best practices, style issues, and common errors — helps maintain quality and consistency.
 
 ---
 
-## **40. Example playbook**
+### 40. Example playbook to install and start Apache (fixed & correct)
+
+**Answer:**
 
 ```yaml
-- name: Install Apache
+- name: Install and start Apache
   hosts: webservers
   become: yes
   tasks:
-    - yum:
+    - name: Install httpd
+      yum:
+        name: httpd
+        state: present
+
+    - name: Ensure httpd is started and enabled
+      service:
+        name: httpd
+        state: started
+        enabled: yes
 ```
 
-
-name=httpd state=present
-- service: name=httpd state=started
-
-````
-
 ---
 
-## **41. Sample playbook to install Nginx**
-```yaml
-- hosts: webservers
-  become: yes
-  tasks:
-    - apt: name=nginx state=present
-      when: ansible_os_family == "Debian"
-    - yum: name=nginx state=present
-      when: ansible_os_family == "RedHat"
-    - service: name=nginx state=started enabled=yes
-````
+### 41. Sample playbook to install Nginx on Debian and RedHat families
 
----
-
-## **42. Example playbook to check service status**
+**Answer:**
 
 ```yaml
 - hosts: webservers
   become: yes
   tasks:
-    - service_facts:
-    - debug: msg="{{ ansible_facts.services['nginx.service'].state }}"
+    - name: Install Nginx on Debian
+      apt:
+        name: nginx
+        state: present
+      when: ansible_facts['os_family'] == 'Debian'
+
+    - name: Install Nginx on RedHat
+      yum:
+        name: nginx
+        state: present
+      when: ansible_facts['os_family'] == 'RedHat'
+
+    - name: Ensure nginx is running and enabled
+      service:
+        name: nginx
+        state: started
+        enabled: yes
 ```
 
 ---
 
-## **43. Restart Nginx if config changes**
+### 42. Example playbook to check service status
+
+**Answer:**
+
+```yaml
+- hosts: webservers
+  become: yes
+  tasks:
+    - name: Gather service facts
+      service_facts:
+
+    - name: Print nginx state
+      debug:
+        msg: "{{ ansible_facts.services['nginx.service'].state }}"
+      when: "'nginx.service' in ansible_facts.services"
+```
+
+---
+
+### 43. Restart Nginx if config changes (template + handler)
+
+**Answer:**
 
 ```yaml
 tasks:
-  - template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
-    notify: restart nginx
+  - name: Deploy nginx config
+    template:
+      src: nginx.conf.j2
+      dest: /etc/nginx/nginx.conf
+    notify: Restart Nginx
 
 handlers:
-  - service: name=nginx state=restarted
+  - name: Restart Nginx
+    service:
+      name: nginx
+      state: restarted
 ```
 
 ---
 
-## **44. Using Ansible for application deployment**
+### 44. Using Ansible for application deployment — typical steps
 
-* Clone repo
-* Install dependencies
-* Configure environments
-* Restart services
+**Answer:** Pull code (git), install dependencies, configure environment (templates + vars), run DB migrations, restart services, and perform health checks. Use roles for each stage and idempotent modules.
 
 ---
 
-## **45. Using Ansible for OS hardening**
+### 45. Using Ansible for OS hardening — examples
 
-* Set permissions
-* Disable root SSH
-* Apply password policies
-* Install patches
+**Answer:** Set file permissions, disable root SSH, enforce password complexity, close unused ports, apply security updates, install audit/monitoring agents. Use roles and `ansible-lint` for consistent policies.
 
 ---
 
-## **46. Using Ansible with Docker**
+### 46. Using Ansible with Docker — basic example
+
+**Answer:**
 
 ```yaml
-- community.docker.docker_image: name=nginx source=pull
-- community.docker.docker_container: name=web image=nginx ports="80:80"
+- name: Pull nginx image
+  community.docker.docker_image:
+    name: nginx
+    source: pull
+
+- name: Run nginx container
+  community.docker.docker_container:
+    name: web
+    image: nginx
+    published_ports: "80:80"
+    state: started
 ```
 
 ---
 
-## **47. Setting up Jump Host**
+### 47. Setting up a Jump Host (ProxyJump) in inventory
 
-```ini
+**Answer:** Example inventory line:
+
+```
 server1 ansible_host=10.0.0.10 ansible_ssh_common_args='-o ProxyJump=jumpuser@bastion.example.com'
 ```
 
----
-
-## **48. Optimizing playbook execution**
-
-* Increase `forks`
-* Use `gather_facts: no`
-* Async tasks
-* Use tags and caching
+Alternatively configure `ssh_config` or `ansible.cfg` SSH arguments.
 
 ---
 
-## **49. Ansible Execution Strategies**
+### 48. How to optimize playbook execution?
 
-* **Linear:** Default, sequential tasks
-* **Free:** Tasks run independently across hosts
-
-```yaml
-strategy: free
-```
+**Answer:** Increase `forks`, disable facts where not needed (`gather_facts: no`), use `async`/`poll: 0` for long tasks, use caching (fact_caching), limit hosts with `--limit`, and use efficient modules instead of shell loops.
 
 ---
 
-## **50. Managing dynamic inventory in AWS**
+### 49. Ansible execution strategies — Linear vs Free
 
-Use **AWS EC2 inventory plugin**:
+**Answer:** `linear` (default) runs tasks sequentially per host. `free` lets hosts run tasks independently (useful when tasks for hosts don’t depend on each other). Set `strategy: free` in playbook header.
+
+---
+
+### 50. Managing dynamic inventory in AWS — example plugin config
+
+**Answer:** Use the AWS EC2 inventory plugin:
 
 ```yaml
 plugin: amazon.aws.ec2
 regions: [ap-south-1]
-filters: { instance-state-name: running }
+filters:
+  instance-state-name: running
 ```
 
-```bash
-ansible-inventory -i aws_ec2.yml --list
-```
+Then `ansible-inventory -i aws_ec2.yml --list` to view hosts.
 
 ---
 
-## **51. Run playbook with a specific inventory**
+### 51. How to run a playbook with a specific inventory?
+
+**Answer:**
 
 ```bash
 ansible-playbook -i inventory/dev_hosts.ini site.yml
 ```
 
----
-
-## **52. Integrate Ansible with Terraform**
-
-* Terraform provisions infrastructure
-* Ansible configures it using Terraform outputs:
-
-```bash
-ansible-playbook -i $(terraform output -raw webserver_ip), setup.yml
-```
+You can also pass a comma-separated host list: `-i 10.0.0.10,`
 
 ---
 
-## **53. Use Ansible with CI/CD pipelines**
+### 52. How to integrate Ansible with Terraform?
 
-* Build → Deploy → Verify
-* Example Jenkins step:
-
-```groovy
-sh 'ansible-playbook -i inventory/prod site.yml'
-```
+**Answer:** Use Terraform to provision infra and output IPs (`terraform output -raw web_ip`), then feed those into Ansible inventory (dynamic inventory or `-i $(terraform output -raw web_ip),`) to configure instances.
 
 ---
 
-## **54. What is Ansible Tower?**
+### 53. How to use Ansible in CI/CD pipelines (Jenkins example)?
 
-* Web UI for automation
-* RBAC, scheduling, logging
-* Centralized management of inventories, credentials, and playbooks
+**Answer:** In pipeline step run `ansible-playbook -i inventory/prod site.yml`. Store credentials securely (Vault, Jenkins credentials), and use linting & tests (Molecule) as pipeline stages.
 
 ---
 
-## **55. Difference between Ansible and Terraform**
+### 54. What is Ansible Tower / AWX?
 
-| Feature  | Ansible           | Terraform                   |
-| -------- | ----------------- | --------------------------- |
-| Purpose  | Config management | Infrastructure provisioning |
-| Language | YAML              | HCL                         |
-| Model    | Push              | Declarative                 |
-| State    | No                | Maintains state file        |
+**Answer:** Tower (commercial Red Hat) and AWX (upstream) provide a web UI, RBAC, scheduling, logging, credential management, job templates, and centralized automation control for Ansible.
 
 ---
 
-## **56. Difference from Chef and Puppet**
+### 55. Difference between Ansible and Terraform
 
-* Agentless, push model, simple YAML
-* Chef: Ruby, pull model
-* Puppet: DSL, pull model
+**Answer:** Ansible is for configuration management (push, no central state), Terraform is for infrastructure provisioning (declarative, maintains state). They complement each other: Terraform creates infra, Ansible configures it.
 
 ---
 
-## **57. Why Ansible is preferred**
+### 56. How does Ansible differ from Chef and Puppet?
 
-* Agentless, simple, idempotent
-* Strong community
-* Cloud & CI/CD integration
+**Answer:** Ansible is agentless and push-based using YAML. Chef/Puppet are typically agent-based and use Ruby/DSL with different models (often pull). Ansible tends to be simpler to start with.
 
 ---
 
-## **58. Best practices in production**
+### 57. Why is Ansible preferred?
 
-* Git version control
-* Ansible Vault for secrets
-* Modular roles
-* Test in staging
-* Dynamic inventories
-* Logging & linting
+**Answer:** Simplicity (YAML), agentless architecture (SSH), idempotency, large community, good cloud and CI/CD integrations.
 
 ---
 
-## **59. Why are you using Ansible?**
+### 58. Best practices in production with Ansible
 
-“I automate deployments, OS configurations, Docker, microservices, and monitoring setups. It reduces manual effort, maintains consistency, and improves reliability.”
-
----
-
-## **60. How do you test Ansible playbooks?**
-
-* `--syntax-check`
-* `--check` mode
-* Ansible Lint
-* Molecule testing for roles
-* Staging verification
-
-```bash
-ansible-playbook site.yml --check --diff
-```
-
-Absolutely! Here's how we can **add the scenario-based questions in Mihir-style** to your existing document. I’ve kept it **concise, structured, and to-the-point**, with YAML snippets where needed:
+**Answer:** Keep playbooks modular (roles), maintain in Git, use Ansible Vault for secrets, adopt CI (linting & Molecule), use dynamic inventories, enable logging, and test in staging.
 
 ---
 
-# **Scenario-Based Ansible Questions (Professional Level)**
+### 59. Why do you use Ansible? (How to answer in interview)
 
-## **61. Multi-Tier Application Deployment**
+**Answer (example):** “I use Ansible to automate deployments, enforce consistent configurations, reduce manual errors, and integrate infra provisioning with CI/CD. It speeds up delivery and improves reliability.”
 
-**Scenario:** Deploy web, app, and database servers.
-**Answer:**
+---
 
-* Use **roles** for each tier: `web`, `app`, `db`.
-* Directory structure:
+### 60. How do you test Ansible playbooks?
 
-```
-roles/
-  web/tasks/main.yml
-  app/tasks/main.yml
-  db/tasks/main.yml
-inventory/production/hosts
-group_vars/
-  all.yml
-  web.yml
-  app.yml
-  db.yml
-```
+**Answer:** Use `--syntax-check`, `--check` (dry-run), `ansible-lint`, and `Molecule` to test roles locally (with Docker/Vagrant). Also run in staging with monitoring and automated smoke tests.
 
-* `site.yml` includes roles:
+---
+
+### 61. Multi-tier application deployment — approach
+
+**Answer:** Use roles per tier (web/app/db), separate inventories and group_vars, a `site.yml` to orchestrate order, and health checks. Example:
 
 ```yaml
 - hosts: web
   roles: [web]
-
 - hosts: app
   roles: [app]
-
 - hosts: db
   roles: [db]
 ```
 
 ---
 
-## **62. Rolling Updates with Zero Downtime**
+### 62. Rolling updates with zero downtime — pattern
 
-**Scenario:** Update application without downtime.
-**Answer:**
-
-* Use **load balancer** to drain traffic.
-* Update servers in **batches (`serial`)**.
-* Health check after update.
-* Add back to load balancer.
-
-```yaml
-- hosts: web_servers
-  serial: 2
-  tasks:
-    - name: Drain traffic
-      uri: url="http://lb/api/drain/{{ inventory_hostname }}" method=POST
-
-    - name: Update web role
-      include_role: name=web
-
-    - name: Health check
-      uri: url="http://{{ inventory_hostname }}/health" status_code=200 retries=5 delay=10
-
-    - name: Restore traffic
-      uri: url="http://lb/api/add/{{ inventory_hostname }}" method=POST
-```
+**Answer:** Use `serial` to update hosts in batches, drain traffic from load balancer, deploy, run health checks, and re-add to LB. Example `serial: 2` for batch of two hosts.
 
 ---
 
-## **63. Handling Secret Management**
+### 63. Handling secret management — best practice
 
-**Scenario:** Manage passwords/API keys securely.
-**Answer:**
-
-* Use **Ansible Vault**.
-* Encrypt secrets: `ansible-vault encrypt secrets.yml`
-* Use in playbooks:
-
-```yaml
-- hosts: all
-  vars_files: [secrets.yml]
-  tasks:
-    - name: Use API key
-      uri:
-        url: "https://api.example.com/data"
-        headers: {Authorization: "Bearer {{ api_key }}"}
-```
-
-* Run playbook: `ansible-playbook playbook.yml --ask-vault-pass`
+**Answer:** Use Ansible Vault for secrets, avoid plaintext credentials in repos, use `--vault-id` or vault password files for automation, and integrate with external secret managers (HashiCorp Vault, AWS Secrets Manager) if needed.
 
 ---
 
-## **64. Idempotency Issues**
+### 64. Idempotency issues — how to debug and fix
 
-**Scenario:** Task is not idempotent.
-**Answer:**
-
-* Identify task via `-v` flag.
-* Check current state before changes.
-* Example fix:
-
-```yaml
-# Non-idempotent
-- lineinfile: path=/etc/example.conf line="new configuration"
-
-# Idempotent
-- lineinfile: path=/etc/example.conf line="new configuration" state=present
-```
+**Answer:** Run with `-vvv` to identify cause, check module choice (replace `shell` with module), add `creates`/`removes` or conditional checks, and use `changed_when`/`check_mode` where appropriate.
 
 ---
 
-## **65. Dynamic Inventory**
+### 65. Dynamic inventory for frequently changing infra
 
-**Scenario:** Servers frequently added/removed.
-**Answer:**
-
-* Use **inventory plugins** (AWS, Azure, GCP).
-* Example AWS EC2:
-
-```yaml
-plugin: aws_ec2
-regions: [us-east-1]
-filters: {tag:Environment: production}
-```
-
-* List hosts: `ansible-inventory -i aws_ec2.yml --list`
+**Answer:** Use cloud inventory plugins (AWS, Azure, GCP) or dynamic scripts that query the cloud provider and return JSON inventory. Filter by tags, region, and instance-state.
 
 ---
 
-## **66. Optimizing Playbook Performance**
+### 66. Optimizing slow playbooks — tips
 
-**Scenario:** Playbook execution is slow.
-**Answer:**
-
-* Increase **forks**: `ansible-playbook -f 10`
-* Use **async** for long tasks:
-
-```yaml
-- name: Long task
-  command: /path/to/script
-  async: 3600
-  poll: 0
-```
-
-* Limit hosts: `--limit web_servers`
-* Delegate to localhost if needed.
+**Answer:** Increase forks (`-f`), enable fact caching, gather minimal facts (`gather_facts: no` where possible), use `async` for long-running tasks, and reduce unnecessary tasks and network hops.
 
 ---
 
-## **67. Handling Legacy Scripts**
+### 67. Migrating legacy shell scripts to Ansible
 
-**Scenario:** Migrate shell scripts to Ansible.
-**Answer:**
-
-* Break scripts into discrete tasks.
-* Use **Ansible modules** instead of shell commands.
-* Example:
-
-```bash
-# Shell
-apt-get update
-apt-get install -y nginx
-```
-
-```yaml
-# Ansible
-- apt: update_cache=yes
-- apt: name=nginx state=present
-```
+**Answer:** Break the script into discrete steps and convert to modules (`apt`, `yum`, `file`, `user`). Keep idempotency in mind and replace multi-step shells with declarative tasks.
 
 ---
 
-## **68. Managing Multiple Environments**
+### 68. Managing dev/staging/prod environments
 
-**Scenario:** Handle dev, staging, prod environments.
-**Answer:**
+**Answer:** Use separate inventory directories (`inventories/dev`, `inventories/prod`), `group_vars` & `host_vars`, and environment-specific vars files. Use CI pipelines to select environment.
 
-* Use separate **inventory files** and **group_vars**.
-
-```
-inventories/
-  development/hosts
-  staging/hosts
-  production/hosts
-group_vars/all.yml
-```
-
-* Run playbook with specific environment:
-
-```bash
-ansible-playbook -i inventories/staging/hosts site.yml
-```
 ---
 
-## **69. Delegation & `run_once`**
+### 69. Delegation & `run_once` — use cases
 
-**Scenario:** Run a task only on a specific host or once across all hosts.
+**Answer:** `delegate_to` runs a task on a specific host (e.g., DB migrations on primary); `run_once: true` ensures the task runs once across all hosts (e.g., create a shared resource).
 
-**Answer:**
-Use `delegate_to` to target a host and `run_once: true` to execute a task just once.
+Example:
 
 ```yaml
-- name: Gather OS info from DB host only
-  shell: cat /etc/os-release
+- name: Run migration on db host
+  command: /opt/migrate.sh
   delegate_to: "{{ groups['db'][0] }}"
   run_once: true
 ```
 
-✅ **Explanation:**
+---
 
-* `delegate_to` sends the task to the host you specify.
-* `run_once` ensures it executes only once, not on all hosts.
+### 70. Fact caching & custom facts — why & how
+
+**Answer:** Fact caching reduces repeated SSH/fact collection (speeds up runs). Enable `fact_caching` in `ansible.cfg`. Custom facts live under `/etc/ansible/facts.d/` as JSON files and are accessible as `ansible_local`.
 
 ---
 
-## **70. Fact Caching & Custom Facts**
+### 71. Advanced loops — handling complex data
 
-**Scenario:** Reduce fact gathering time and create custom facts.
-
-**Answer:**
-
-1. **Enable fact caching** in `ansible.cfg`:
-
-```ini
-[defaults]
-gathering = smart
-fact_caching = jsonfile
-fact_caching_connection = /tmp/ansible_cache
-fact_caching_timeout = 86400
-```
-
-2. **Create custom facts** on a managed host:
-
-```bash
-# /etc/ansible/facts.d/myfact.fact
-{
-  "department": "devops",
-  "owner": "mihir"
-}
-```
+**Answer:** Loop over dictionaries/lists of dicts:
 
 ```yaml
-- name: Print custom fact
-  debug:
-    msg: "{{ ansible_local.myfact.department }}"
-```
-
-✅ **Explanation:**
-
-* Fact caching avoids repeated SSH/fact gathering for speed.
-* Custom facts let you store host-specific metadata.
-
----
-
-## **71. Advanced Loops**
-
-**Scenario:** Loop through complex data structures with multiple attributes.
-
-**Answer:**
-
-```yaml
-- name: Create users with shells
+- name: Create users
   user:
     name: "{{ item.name }}"
     shell: "{{ item.shell }}"
-    state: present
   loop:
     - { name: 'dev', shell: '/bin/bash' }
     - { name: 'test', shell: '/bin/zsh' }
 ```
 
-✅ **Explanation:**
-
-* Loops can handle dictionaries and lists.
-* Use `loop_control` if you want to customize index or labels.
-
-```yaml
-loop_control:
-  label: "{{ item.name }}"
-```
+Use `loop_control` to set labels and indices.
 
 ---
 
-## **72. Conditional Includes (`import_tasks` vs `include_tasks`)**
+### 72. `import_tasks` vs `include_tasks` — difference and usage
 
-**Scenario:** Include tasks dynamically based on conditions.
-
-**Answer:**
-
-```yaml
-- import_tasks: common.yml   # Static, loaded at playbook start
-- include_tasks: optional.yml
-  when: ansible_os_family == "RedHat"  # Dynamic
-```
-
-✅ **Explanation:**
-
-* `import_tasks` → Static, parsed once.
-* `include_tasks` → Dynamic, evaluated during runtime, supports `when`.
+**Answer:** `import_tasks` is static (parsed at play start). `include_tasks` is dynamic (evaluated at runtime) and can use `when`. Use `import_tasks` for fixed task sets and `include_tasks` for conditional/dynamic inclusion.
 
 ---
 
-## **73. Advanced Error Handling**
+### 73. Advanced error handling with `block/rescue/always`
 
-**Scenario:** Handle critical and non-critical task failures gracefully.
-
-**Answer:**
+**Answer:** `block` groups tasks, `rescue` handles failures in the block, `always` runs afterwards regardless of success. Use `failed_when`/`ignore_errors` to tune behavior. Example:
 
 ```yaml
 - block:
-    - name: Restart web service
-      service:
-        name: nginx
-        state: restarted
+    - do something
   rescue:
-    - debug: msg="Restart failed, alert admin!"
+    - notify admin
   always:
-    - debug: msg="This runs regardless of success/failure."
+    - cleanup
 ```
-
-✅ **Explanation:**
-
-* `block` → main tasks
-* `rescue` → run if block fails
-* `always` → run regardless
-* Combine with `ignore_errors` or `failed_when` for fine-grained control.
 
 ---
 
-## **74. Ansible Tower / AWX Advanced Usage**
+### 74. Ansible Tower/AWX advanced usage
 
-**Scenario:** Manage credentials, schedules, and inventory in enterprise environments.
-
-**Answer:**
-
-* Use **Job Templates** to run playbooks.
-* Assign **inventories** and **credentials** per template.
-* Apply **RBAC** for user access.
-* Schedule recurring jobs for maintenance or deployments.
-
-✅ **Tip:** Tower integrates with Git, LDAP, and logging systems — perfect for enterprise automation.
+**Answer:** Use Job Templates, Credentials, Inventories, Schedules, and RBAC to manage automation at scale. Integrate with SCM (Git), LDAP/SSO, and notifications. Use surveys for runtime variable input.
 
 ---
 
-## **75. Molecule Testing / CI/CD Integration**
+### 75. Molecule testing & CI/CD integration — workflow
 
-**Scenario:** Test roles locally and integrate with CI/CD pipelines.
-
-**Answer:**
-
-1. **Molecule test** for roles:
-
-```bash
-molecule init role web --driver-name docker
-molecule test
-```
-
-2. **CI/CD integration** (example with Jenkins):
-
-```groovy
-pipeline {
-  stages {
-    stage('Deploy') {
-      steps {
-        sh 'ansible-playbook -i inventory/prod site.yml'
-      }
-    }
-  }
-}
-```
-
-✅ **Explanation:**
-
-* Molecule verifies your role logic locally.
-* CI/CD integration ensures automated deployments and reduces human error.
+**Answer:** Use Molecule to test roles (`molecule init role`, `molecule test`) with Docker or other drivers. Integrate tests into CI pipelines (Jenkins/GitHub Actions) to run linting, unit tests, and `molecule test` before merging.
 
 ---
+
