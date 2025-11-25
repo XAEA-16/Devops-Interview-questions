@@ -55,7 +55,11 @@
 51. What are the different types of **variables in Linux**?
 52. **Kill vs Kill -9** in Linux
 53. Explain **DNS** in simple words.
-54. Explain the complete flow of the request from client to server (**OSI Model**) 
+54. Explain the complete flow of the request from client to server (**OSI Model**)
+55. How will you troubleshoot slow performance of a Linux server, and what commands will you use?
+56. If you are trying to run a script in Linux and get a "permission denied" error, what steps will you take to troubleshoot this?
+57. Write shell scripting to find largest file consumers causing high disk usage.
+
 
 [Image of OSI Model Layers]
 
@@ -181,6 +185,9 @@
 68. Using **Static Code Analysis** what kind of problems can you identify?
 69. Static Code Analysis **Slows Down CI Pipeline**, How will you fix it?
 70. When a build fails in Jenkins, How will you send an email?
+71. Can you explain the stages in your Jenkins pipeline for deploying your application?
+72. What stages have you defined in your Jenkins pipeline?
+73. How do you control roles and permissions in Jenkins?
 
 ---
 
@@ -247,12 +254,16 @@
 59. Docker host is running out of **disk space**. How do you clean up?
 60. How will you **Debug a Live Container**?
 61. When will you **forcefully remove a container** and how?
+62. Can I delete a Docker image while a container based on it is running?
+63. What do you understand by Mutable vs. Immutable in Docker?
+64. Can I update a Docker image with the same tag?
+
 
 ---
 
 ### ☸️ Kubernetes
 
-1.  **Kubernetes Architecture**
+1.  Can you explain Kubernetes architecture in brief?
 2.  Command to run Kubernetes Manifest
 3.  What happens when the master node fails; will the worker node keep running
 4.  What is **`etcd`** used for
@@ -364,6 +375,22 @@
 110. What is **Kubernetes QOS**?
 111. Explain 3 challenges that you faced while working on Kubernetes?
 112. Can we use **Kubernetes Master for scheduling the pods**?
+113. How will you upgrade your EKS cluster including nodes?
+114. How will you ensure pods are distributed across all nodes if you have 10 pods running on AKS?
+115. How will you expose an application running in a pod over a domain name like ring.com?
+116. Desired pods ≠ current pods. How does Kubernetes fix it?
+117. What is the flow when we run kubectl apply?
+118. How to schedule microservice pods only on C5.xlarge nodes?
+119. Can other microservices run on a node tainted for C5.xlarge?
+120. After upgrading nodes, how does Kubernetes ensure drained pods go to the new nodes?
+121. I want pods from production and staging namespaces to communicate. How can I achieve it?
+122. How do microservices in the same namespace communicate with each other?
+123. How to restrict communication between two namespaces?
+124. Where do Kubernetes Persistent Volumes exist physically?
+125. Can PVCs be created dynamically?
+126. How do you troubleshoot CrashLoopBackOff? Commands?
+
+
 
 ---
 
@@ -472,6 +499,7 @@
 58. What are some best practices for using Ansible in production?
 59. Why are you using Ansible? What have you done with it?
 60. How do you test Ansible playbooks?
+61. What is Prehook in Ansible?
 
 ---
 
@@ -528,6 +556,17 @@
 49. Have you heard about **opentofu**? Do you think it is better than Terraform?
 50. Write terraform code to create any resource on AWS?
 51. What is the difference between **Resource and Datasource in terraform**?
+52. If you have to create 10 EC2 machines with same configuration using Terraform, what will you use?
+53. How will you ensure Terraform uses an existing VPC instead of creating a new one?
+54. If a VPC created using Terraform is deleted manually and you run “terraform apply”, what will happen?
+55. How will you pass outputs from one Terraform module (VPC) to another module (EC2)?
+56. How do you pass VPC ID from VPC module to EC2 module?
+57. How do you store Terraform state file?
+58. What are Terraform Provisioners?
+59. What is the use of null_resource in Terraform?
+60. How do you create conditional resources in Terraform?
+
+
 
 ---
 
@@ -616,6 +655,8 @@
 26. How do you **trace a request across multiple microservices** in a Kubernetes cluster
 27. A pod crashes randomly with **OOMKilled**. How do you identify and fix this?
 28. You got woken up at 2AM by **false alarms**. What's your strategy to reduce noise?
+29. How have you set up Prometheus and Grafana architecture?
+
 
 ---
 
@@ -639,6 +680,8 @@
 2.  How do you attach policies to IAM users, either individually or by group?
 3.  What are IAM roles and policies?
 4.  What is the purpose of **access keys and secret keys** in AWS?
+5.  What is Permission Boundary in IAM?
+
 
 **Virtual Private Cloud (VPC) & Networking**
 
@@ -658,6 +701,13 @@
 14. How can two servers (Mumbai & Chicago) SSH each other?
 15. You have only one public IP — how can you connect the servers?
 16. Can you tell me something about VPC peering?
+17. How will you connect your on-prem data center with AWS Cloud?
+18. Why do we require a NAT Gateway for a private subnet if the subnet is already private?
+19. What is the default route in the main route table?
+20. Are you aware how to configure VPC Peering?
+21. Are you aware of Transit Gateway?
+
+
 
 **Compute Services (EC2 & Load Balancing)**
 
@@ -681,6 +731,20 @@
 18. I just want to increase memory in the same EC2 instance — can I do that?
 19. Do you have experience working on autoscaling?
 20. Your application is experiencing high latency during peak hours. You suspect it's a scaling issue with your EC2 instances in an Auto Scaling Group. How do you diagnose and resolve this?
+21. How will you handle high traffic on an EC2 instance during business hours?
+22. What troubleshooting approach will you consider if your EC2 instance crashes unexpectedly?
+23. What might be the reasons if your EC2 application cannot download anything from the internet?
+24. What issues can arise and how can you fix them if two EC2 instances in different VPCs cannot communicate?
+25. How can you enable communication between an EC2 application and S3 bucket to fetch objects?
+26. In EC2 I have to make my server private. What configuration can I do?
+27. If I do NOT attach a NAT Gateway to my route table, will the instance become private?
+28. I want to convert my public EC2 to private without touching route table. How can I do?
+29. How will you switch traffic from one server to another while keeping the same IP and DNS?
+30. How will you ensure EC2 in Account A communicates with a DB in Account B?
+31. What can cause a target group to become unhealthy and how do you fix it?
+32. What parameters do you use for creating an Auto Scaling Group?
+33. What are different types of Auto Scaling policies?
+
 
 **Serverless (AWS Lambda)**
 
@@ -711,6 +775,11 @@
 12. Explain **cross-region replication in S3**.
 13. How can we monitor and track S3?
 14. A junior developer has accidentally **deleted a critical S3 bucket**, and there are no backups. What steps would you take to recover?
+15. How will you restore data if it's accidentally deleted from S3?
+16. Are S3 buckets regional or global?
+17. How to move all S3 data from Account A to a shared AWS account?
+18. What is the use of S3 Replication Rule?
+19. For moving data from one S3 bucket to another, should I use lifecycle rule or replication rule?
 
 **Monitoring, Logging, and Messaging (CloudWatch, CloudTrail, SNS, SQS)**
 
@@ -789,3 +858,4 @@
 ---
 
 What subject would you like to review first?
+
