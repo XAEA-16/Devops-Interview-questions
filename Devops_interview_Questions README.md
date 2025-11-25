@@ -222,7 +222,6 @@
 27. Explain **networking in Docker**
 28. Difference between **Dockerfile and Docker Compose file**
 29. If one service is dependent on another, how to create it
-30. What is Docker Stack
 31. Difference between **Docker Swarm and Kubernetes**
 32. How to do **OS upgrades in containers**
 33. Creating service on a particular node
@@ -858,4 +857,5 @@
 ---
 
 What subject would you like to review first?
+
 
