@@ -59,6 +59,7 @@
 55. How will you troubleshoot slow performance of a Linux server, and what commands will you use?
 56. If you are trying to run a script in Linux and get a "permission denied" error, what steps will you take to troubleshoot this?
 57. Write shell scripting to find largest file consumers causing high disk usage.
+58. What is the meaning of the chown command?
 
 
 [Image of OSI Model Layers]
@@ -188,6 +189,7 @@
 71. Can you explain the stages in your Jenkins pipeline for deploying your application?
 72. What stages have you defined in your Jenkins pipeline?
 73. How do you control roles and permissions in Jenkins?
+74. You need to run a pipeline for primary vs secondary infra — how will you put conditional execution?
 
 ---
 
@@ -256,6 +258,9 @@
 62. Can I delete a Docker image while a container based on it is running?
 63. What do you understand by Mutable vs. Immutable in Docker?
 64. Can I update a Docker image with the same tag?
+65. can i delete an image when container is running
+66. What are the different types of networking available in Docker and which is the default?
+67. What do you understand by mutability and immutability in Docker (pushing images to ACR)?
 
 
 ---
@@ -388,7 +393,11 @@
 124. Where do Kubernetes Persistent Volumes exist physically?
 125. Can PVCs be created dynamically?
 126. How do you troubleshoot CrashLoopBackOff? Commands?
-
+127. What is the syntax for establishing communication between namespaces using ClusterIP?
+128. You have mentioned 5 replicas, but only 3 are running — which component fixes this and how?
+129. How will you troubleshoot pod errors returning 403 and 401?
+130. How do you continuously monitor a rolling update (kubectl command)?
+131. If I have to segregate communication in Kubernetes between 7 microservices and 3 — how will you do it?   
 
 
 ---
@@ -433,6 +442,7 @@
 36. Pod is in a failed state in EKS — how do you troubleshoot it?
 37. **ECS vs EKS** — when would you choose each?
 38. How do you handle authentication for EKS clusters and store secrets securely in your environment?
+39. If I have an app running on EKS and need to expose it externally — what setup will you do?
 
 ---
 
@@ -564,7 +574,9 @@
 58. What are Terraform Provisioners?
 59. What is the use of null_resource in Terraform?
 60. How do you create conditional resources in Terraform?
-
+61. If I am using passwords and need to print them on console — how can I print?
+62. How do you see data resource in Terraform?
+63. Two modules (VPC + EC2) executing together — how to ensure VPC is created first?
 
 
 ---
@@ -681,7 +693,8 @@
 4.  What is the purpose of **access keys and secret keys** in AWS?
 5.  What is Permission Boundary in IAM?
 
-
+**AWS Secret Manager**
+1. In which scenario should I use AWS Secret Manager or Kubernetes Secret to store credentials?
 **Virtual Private Cloud (VPC) & Networking**
 
 1.  Why do we use **Amazon VPC**?
@@ -743,6 +756,8 @@
 31. What can cause a target group to become unhealthy and how do you fix it?
 32. What parameters do you use for creating an Auto Scaling Group?
 33. What are different types of Auto Scaling policies?
+34. what is cooldown in scaling
+35. Which kind of setup or service would you use for path-based routing (e.g., /profile, /order)?
 
 
 **Serverless (AWS Lambda)**
@@ -757,6 +772,7 @@
 8.  What modules have you used in your Lambda function?
 9.  Where do you write and save your Lambda function code?
 10. How do you create AWS Lambda functions and manage the artifacts for deployment?
+11. What are the backend services for the Lambda function?
 
 **Storage (Amazon S3)**
 
@@ -779,6 +795,7 @@
 17. How to move all S3 data from Account A to a shared AWS account?
 18. What is the use of S3 Replication Rule?
 19. For moving data from one S3 bucket to another, should I use lifecycle rule or replication rule?
+20. How will you do cross-account connection between S3 buckets in two different AWS accounts?
 
 **Monitoring, Logging, and Messaging (CloudWatch, CloudTrail, SNS, SQS)**
 
@@ -793,6 +810,7 @@
 9.  What are **decoupled systems**?
 10. Any idea about **EventBridge**?
 11. In AWS, if you do not want an immediate response for a request, how will you implement an **async mechanism**?
+12. What do you understand by CloudWatch alarms and CloudWatch events?
 
 **Content Delivery & DNS**
 
@@ -856,6 +874,7 @@
 
 ---
 
-What subject would you like to review first?
+
+
 
 
