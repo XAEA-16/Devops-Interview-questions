@@ -12,8 +12,6 @@
 8.  What are the key differences between Linux and Unix?
 9.  Explain the **Linux file system hierarchy (FHS)**.
 10. What's the difference between a **hard link and a soft (symbolic) link**?
-11. What are **`inodes`**?
-12. How do you check disk space usage in Linux?
 13. What are the different types of **file permissions** in Linux? How do you change them?
 14. How do you check network connectivity to a remote host?
 15. How do you check for **open ports** on a Linux server?
@@ -44,7 +42,6 @@
 40. Application deployed on Nginx returns **Connection Refused**, How will you fix it?
 41. **SSH to an instance stopped working**? How will you troubleshoot the issue?
 42. Find and list the log files **older than 7 days** in `/var/log` folder.
-43. Find and **remove the log files older than 30 days** in a folder.
 44. **Cronjob + Shell script** to perform advanced log rotation (Scenario Provided)
 45. **Bulk creation of linux users** using CSV file.
 46. **Service Health monitor script** in Bash
@@ -136,7 +133,6 @@
 18. How to set Jenkins build to fail based on a specific word in console output
 19. Active and reactive parameters
 20. If-else in scripting pipeline
-21. **Master and slave architecture**
 22. What is **Jenkins shared library**, why is it used, and its structure
 23. Some most useful Jenkins plugins (Maven, SCM, Amazon EC2, Nagios)
 24. A Jenkins build fails due to a missing dependency but runs perfectly fine on the local machine - what to do?
@@ -166,7 +162,6 @@
 48. If a bug appears in production, what’s your approach to resolving it?
 49. Describe your typical deployment flow and CI/CD workflow.
 50. What stages do you define in your Jenkins pipeline, and how do you ensure full quality checks during deployment?
-51. How do you use Jenkins shared libraries? Explain their typical structure and how they are integrated into your Jenkinsfiles.
 52. What have you done with Jenkins?
 53. What was the CI/CD pipeline used for — infra or app deployment?
 54. Can you pass **runtime parameters** in a Jenkins pipeline?
@@ -177,8 +172,6 @@
 59. What is the difference between **scripted and declarative pipelines** in Jenkins?
 60. Have you created a Jenkins pipeline for your project?
 61. What is **Groovy**, and how is it used in Jenkins?
-62. Why do you use Groovy in Jenkins, and where do you save Jenkins files?
-63. **Build Passed Locally but Fails in CI**, how will you troubleshoot?
 64. CI Pipeline Succeeds but **App is Broken in Prod**, What action will you take?
 65. **Pipeline Slows Down** Over Time (Builds taking more time) - How will you fix?
 66. A developer pushes a feature branch, but the **pipeline doesn’t trigger**.
@@ -211,8 +204,7 @@
 14. Best practices to write Dockerfile
 15. Can Docker containers communicate with each other
 16. Command to get running containers
-17. How to remove unused containers and **dangling images**
-18. What are dangling images
+18. What are dangling images, How to remove unused containers and **dangling images**
 19. Moving an image to another server without using a registry concept
 20. Difference between **Docker Stop and Docker Kill**
 21. Difference between **Docker Run and Docker Create**
@@ -241,7 +233,6 @@
 45. Command to give a custom Dockerfile name while building an image
 46. What is **multi-stage Docker build**?
 47. What are the stages in a Docker image build?
-48. Why do we use **`ENTRYPOINT` and `CMD`** instructions?
 49. How do you **scan Docker images**—both during build and at the registry level? Are you using any extensions or tools for image scanning?
 50. How do you pass environment variables during Docker build commands?
 51. What services do you use for storing Docker images?
@@ -258,7 +249,6 @@
 62. Can I delete a Docker image while a container based on it is running?
 63. What do you understand by Mutable vs. Immutable in Docker?
 64. Can I update a Docker image with the same tag?
-65. can i delete an image when container is running
 66. What are the different types of networking available in Docker and which is the default?
 67. What do you understand by mutability and immutability in Docker (pushing images to ACR)?
 
@@ -296,7 +286,6 @@
 27. How do we configure **pod autoscaling**?
 28. Can you give an example of autoscaling?
 29. What are **Helm charts** and how do you use them for application deployment?
-30. How do you add repositories in the Helm chart?
 31. In **EKS**, how do you deploy an application?
 32. What are the main components of EKS?
 33. How do you create a Kubernetes pod in EKS?
@@ -306,7 +295,6 @@
 37. In the EKS, how do you deploy? Via `kubectl` or something else?
 38. Is Jenkins integrated with Docker in your current setup?
 39. Are you working with Kubernetes? What activities do you perform in Kubernetes?
-40. How do you list pods using **`kubectl`** commands?
 41. How do you **troubleshoot pod logs** in Kubernetes?
 42. You are using an on-prem Kubernetes setup — how would you **upgrade Kubernetes** from one version to another?
 43. What is the difference between upgrading the control plane and worker nodes?
@@ -551,7 +539,6 @@
 35. How do you manage secrets in Terraform?
 36. How do you manage the same infrastructure for different environments in Terraform?
 37. How do you define **module dependency** in Terraform?
-38. Can you import manually created resources into Terraform?
 39. A Terraform `apply` command failed halfway through. What do you do to recover and ensure the state is consistent with the infrastructure?
 40. Can you explain the Terraform plan and its purpose?
 41. Why did you choose Terraform over Boto3 for infrastructure provisioning?
@@ -560,7 +547,6 @@
 44. Have you considered storing statefile in **Git instead of AWS S3 or Azure Blob**?
 45. Explain **Terraform Statefile Management**
 46. **Two DevOps Engineers attempts to update statefile at once**. What happens?
-47. We don't have a cloud account. Where can we **store the statefile**?
 48. Do you use **Terraform Enterprise or Community version**?
 49. Have you heard about **opentofu**? Do you think it is better than Terraform?
 50. Write terraform code to create any resource on AWS?
@@ -610,19 +596,15 @@
 25. Do you know how **PRs in Git** work?
 26. How can I resolve conflicts?
 27. Do you have any idea about **`git rebase`**?
-28. What branching strategy do you use?
 29. How to **avoid pushing sensitive files** to a remote repository?
 30. **Cloning a particular branch** with the last commit ID.
 31. Making a teammate track a renamed file after cloning a project.
 32. How can you check the **last 6 months of commits** on a branch or repository?
 33. Git **Fork vs Git Clone**
 34. Explain a scenario where you used **Git Fork** instead of **Git Clone**.
-35. **Git Fetch vs Git Pull**
-36. Show how does Git Fetch and Pull work in Realtime.
 37. Which command do you use mostly - **Git Fetch or Git Pull** and why?
 38. **Git Rebase vs Git Merge** Detailed Explanation
 39. How to explain **Git Merge vs Git Rebase** in Interviews (Short Explanation)
-40. Explain the **Git Branching Strategy** that you used in your company.
 41. Explain **3 challenges** that you faced with Git during your work experience.
 42. Explain the recent challenge that you faced with Git and how did you address it
 43. How do you handle **Merge conflicts in Git**?
@@ -702,7 +684,6 @@
 3.  What is the maximum range you can create a VPC of?
 4.  What is the minimum CIDR block you can create a VPC with?
 5.  Out of minimum CIDR IP, how many VPCs can we create?
-6.  What are **NAT gateways**?
 7.  Tell me about the **VPC structure setup** in your project.
 8.  Difference between **public and private subnet**?
 9.  How can EC2 access S3 privately?
@@ -714,7 +695,7 @@
 15. You have only one public IP — how can you connect the servers?
 16. Can you tell me something about VPC peering?
 17. How will you connect your on-prem data center with AWS Cloud?
-18. Why do we require a NAT Gateway for a private subnet if the subnet is already private?
+18. What are **NAT gateways**? Why do we require a NAT Gateway for a private subnet if the subnet is already private?
 19. What is the default route in the main route table?
 20. Are you aware how to configure VPC Peering?
 21. Are you aware of Transit Gateway?
@@ -733,7 +714,6 @@
 8.  What are the different types of **disks** that are available in aws?
 9.  What types of Load Balancers are you using?
 10. Can I have multiple targets in a **Network Load Balancer**?
-11. How many types of Load Balancers are there in AWS?
 12. When to use **ALB and when to use NLB**?
 13. App is hosted on EC2 and DB is in RDS — how to host the app on the internet?
 14. If EC2 is in a private subnet, how can we make the app public?
@@ -873,6 +853,7 @@
 8.  Tell us about your **project** in your current organization.
 
 ---
+
 
 
 
